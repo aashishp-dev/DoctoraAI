@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<style>
+  html, body { 
+    background-color: #10131a !important; 
+    color: #e1e2ec !important;
+    display: block !important;
+    visibility: visible !important;
+  }
+</style>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DoctoraAI Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-panel {
+        background: rgba(30, 41, 59, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(51, 65, 85, 0.5);
+    }
+    .ai-gradient-border {
+        position: relative;
+        background: rgba(30, 41, 59, 0.8);
+        border-radius: 1.5rem;
+    }
+    .ai-gradient-border::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 1.5rem;
+        padding: 1px;
+        background: linear-gradient(to right, #3B82F6, #4edea3);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+    }
+    @keyframes fadeSlideIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .agent-active {
+        animation: fadeSlideIn 0.4s ease forwards;
+    }
+    @keyframes pulse-glow {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.2); }
+    }
+    .glow-dot {
+        animation: pulse-glow 2s infinite ease-in-out;
+    }
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    .animate-spin {
+        animation: spin 1s linear infinite;
+        display: inline-block;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    @keyframes shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
+    }
+    .skeleton {
+        background: linear-gradient(90deg, #1e293b 25%, #2d3f55 50%, #1e293b 75%);
+        background-size: 1000px 100%;
+        animation: shimmer 2s infinite;
+        border-radius: 8px;
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "outline-variant": "#424754",
+                  "tertiary-fixed-dim": "#4edea3",
+                  "primary-fixed": "#d8e2ff",
+                  "surface-container-high": "#272a31",
+                  "on-secondary-fixed": "#0d1c2d",
+                  "secondary-fixed-dim": "#b9c8de",
+                  "tertiary-fixed": "#6ffbbe",
+                  "inverse-on-surface": "#2e3038",
+                  "secondary": "#b9c8de",
+                  "on-tertiary-fixed": "#002113",
+                  "on-tertiary-container": "#00311f",
+                  "background": "#10131a",
+                  "primary-fixed-dim": "#adc6ff",
+                  "primary": "#adc6ff",
+                  "surface-bright": "#363941",
+                  "on-primary-fixed": "#001a42",
+                  "on-primary-container": "#00285d",
+                  "surface-container-low": "#191b23",
+                  "primary-container": "#4d8eff",
+                  "outline": "#8c909f",
+                  "inverse-primary": "#005ac2",
+                  "on-tertiary-fixed-variant": "#005236",
+                  "on-surface": "#e1e2ec",
+                  "inverse-surface": "#e1e2ec",
+                  "error": "#ffb4ab",
+                  "surface-container-lowest": "#0b0e15",
+                  "on-surface-variant": "#c2c6d6",
+                  "on-secondary": "#233143",
+                  "on-primary": "#002e6a",
+                  "surface-container": "#1d2027",
+                  "on-secondary-container": "#a7b6cc",
+                  "on-secondary-fixed-variant": "#39485a",
+                  "on-error": "#690005",
+                  "tertiary": "#4edea3",
+                  "on-tertiary": "#003824",
+                  "tertiary-container": "#00a572",
+                  "surface-variant": "#32353c",
+                  "on-primary-fixed-variant": "#004395",
+                  "surface": "#10131a",
+                  "on-error-container": "#ffdad6",
+                  "secondary-fixed": "#d4e4fa",
+                  "on-background": "#e1e2ec",
+                  "secondary-container": "#39485a",
+                  "error-container": "#93000a",
+                  "surface-dim": "#10131a",
+                  "surface-container-highest": "#32353c",
+                  "surface-tint": "#adc6ff"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "sm": "12px",
+                  "lg": "48px",
+                  "xs": "4px",
+                  "xl": "80px",
+                  "md": "24px",
+                  "gutter": "24px",
+                  "margin-mobile": "16px",
+                  "base": "8px",
+                  "container-max": "1280px"
+          },
+          "fontFamily": {
+                  "display-lg": ["Inter"],
+                  "headline-lg-mobile": ["Inter"],
+                  "body-lg": ["Inter"],
+                  "headline-md": ["Inter"],
+                  "body-md": ["Inter"],
+                  "label-md": ["Inter"],
+                  "caption": ["Inter"],
+                  "headline-lg": ["Inter"]
+          },
+          "fontSize": {
+                  "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                  "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                  "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                  "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                  "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                  "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                  "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                  "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+</script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl border-b border-outline-variant/20 flex items-center justify-between px-margin-mobile md:px-gutter h-16">
+    <div class="flex items-center gap-base">
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'opsz' 32;">clinical_notes</span>
+        <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight">DoctoraAI</h1>
+    </div>
+</header>
+
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter pt-24 space-y-lg">
+
+    <!-- Input Section -->
+    <section class="space-y-md max-w-3xl">
+        <div class="space-y-xs">
+            <p class="text-primary font-label-md uppercase tracking-widest">Symptom Analysis</p>
+            <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">What symptoms are you experiencing?</h2>
+        </div>
+        <div class="glass-panel rounded-[2rem] p-base md:p-sm group focus-within:ring-2 ring-primary/30 transition-all">
+            <div class="relative">
+                <textarea id="symptom-input" class="w-full bg-transparent border-none focus:ring-0 text-body-lg text-on-surface placeholder-on-surface-variant/50 p-md resize-none min-h-[140px]" placeholder="e.g. Persistent headache for 3 days, localized behind the left eye, accompanied by sensitivity to light..."></textarea>
+                <div class="flex items-center justify-between mt-sm p-base">
+                    <div class="flex items-center gap-sm">
+                        <button id="voice-btn" class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+                            <span class="material-symbols-outlined text-[20px]">mic</span> Voice
+                        </button>
+                        <button class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+                            <span class="material-symbols-outlined text-[20px]">attachment</span> Attach Labs
+                        </button>
+                    </div>
+                    <button id="analyze-btn" class="bg-primary hover:bg-primary-container text-on-primary font-label-md px-md py-sm rounded-xl transition-all flex items-center gap-sm active:scale-95 shadow-lg shadow-primary/20">
+                        Analyze
+                        <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Status Section -->
+    <section id="agent-status" class="hidden space-y-md max-w-3xl">
+        <div class="glass-panel rounded-xl p-md space-y-sm">
+            <p class="text-primary font-label-md uppercase tracking-widest">Consulting Agents</p>
+            <div class="space-y-xs">
+                <div id="status-a" class="flex items-center gap-sm text-on-surface-variant text-body-md">
+                    <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span> Diagnosing the issue
+                </div>
+                <div id="status-b" class="flex items-center gap-sm text-on-surface-variant text-body-md">
+                    <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span> Identifying the most appropriate treatment
+                </div>
+                <div id="status-c" class="flex items-center gap-sm text-on-surface-variant text-body-md">
+                    <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span> Conducting research and analysis
+                </div>
+                <div id="status-v" class="flex items-center gap-sm text-on-surface-variant text-body-md">
+                    <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span> Formulating recommendations
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Results Section -->
+    <section id="final-section" class="space-y-md">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Final Response</h3>
+        </div>
+        <div class="ai-gradient-border p-md md:p-lg">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                <div class="md:col-span-2 space-y-md">
+                    <div class="flex items-center gap-base">
+                        <div class="h-1.5 w-1.5 bg-primary rounded-full"></div>
+                        <h4 class="text-primary font-label-md uppercase">Synthetic Insights</h4>
+                    </div>
+                    <div class="space-y-sm text-on-surface-variant">
+                        <div id="final-response-text" class="text-body-lg text-on-surface">
+                            Enter your symptoms above and click Analyze to get started.
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">
+                    <h4 class="font-label-md text-on-surface-variant uppercase">Potential Risk Level</h4>
+                    <div class="flex items-center justify-between">
+                        <span id="risk-label" class="text-headline-md text-tertiary">—</span>
+                        <span class="material-symbols-outlined text-tertiary">warning</span>
+                    </div>
+                    <div class="w-full bg-outline-variant/20 h-2 rounded-full overflow-hidden">
+                        <div id="risk-bar" class="bg-tertiary h-full w-0 transition-all duration-700"></div>
+                    </div>
+                    <p class="text-caption text-on-surface-variant">Risk factor analysis based on reported duration and frequency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Research Section -->
+    <section class="space-y-md mt-lg">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary">menu_book</span>
+            <h3 class="font-headline-md text-headline-md text-on-surface">Professional Research</h3>
+        </div>
+        <div id="research-container" class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-md">
+            <p class="text-caption text-on-surface-variant">Research papers will appear here after analysis.</p>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <div class="pt-lg pb-md text-center">
+        <p class="text-caption text-on-surface-variant/60 max-w-md mx-auto">
+            DoctoraAI is for informational purposes only. Not a substitute for professional medical advice.
+        </p>
+    </div>
+
+</main>
+
+<!-- Visual Accents -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[120px]"></div>
+    <div class="absolute bottom-[10%] -left-[5%] w-[40%] h-[40%] rounded-full bg-tertiary/5 blur-[100px]"></div>
+</div>
+
+<script>
+    // ── Auto resize textarea ──
+    const textarea = document.getElementById('symptom-input');
+    textarea.addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    });
+
+    // ── Enter key submits ──
+    textarea.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            analyzeBtn.click();
+        }
+    });
+
+    // ── Voice Input ──
+    const voiceBtn = document.getElementById('voice-btn');
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+        const recognition = new SpeechRecognition();
+        recognition.continuous = true;      // keeps listening
+        recognition.interimResults = true;  // shows partial text
+        recognition.lang = 'en-US';
+
+        let isListening = false;
+        let finalTranscript = '';
+
+    voiceBtn.addEventListener('click', () => {
+        if (!isListening) {
+            // START listening
+            finalTranscript = '';
+            try {
+                recognition.start();
+                isListening = true;
+                voiceBtn.innerHTML = `
+                    <span class="material-symbols-outlined text-[20px]" 
+                          style="color:#4edea3;animation:pulse-glow 1s infinite;">mic</span> 
+                    Tap to stop`;
+            } catch(e) {
+                console.error('Could not start recognition:', e);
+            }
+        } else {
+            // STOP listening
+            recognition.stop();
+        }
+    });
+
+    recognition.onresult = (event) => {
+        let interimTranscript = '';
+        finalTranscript = '';
+
+        for (let i = 0; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript + ' ';
+            } else {
+                interimTranscript += event.results[i][0].transcript;
+            }
+        }
+
+        // Show both final + interim in textarea
+        textarea.value = finalTranscript + interimTranscript;
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    };
+
+    recognition.onend = () => {
+        isListening = false;
+        voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
+        // Keep whatever was transcribed in textarea
+        if (finalTranscript.trim()) {
+            textarea.value = finalTranscript.trim();
+        }
+    };
+
+    recognition.onerror = (event) => {
+        isListening = false;
+        voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
+        if (event.error === 'not-allowed') {
+            alert('Microphone blocked. Allow mic access in browser settings and refresh.');
+        } else if (event.error === 'no-speech') {
+            // silently reset — no need to alert
+            console.log('No speech detected');
+        } else {
+            console.error('Speech error:', event.error);
+        }
+    };
+
+} else {
+    voiceBtn.style.display = 'none';
+}
+
+    // ── Agent status helpers ──
+    function resetStatuses() {
+        ['status-a', 'status-b', 'status-c', 'status-v'].forEach(id => {
+            const el = document.getElementById(id);
+            el.classList.remove('text-primary', 'text-tertiary', 'agent-active');
+            el.classList.add('text-on-surface-variant');
+            const icon = el.querySelector('span');
+            icon.classList.remove('animate-spin');
+            icon.textContent = 'radio_button_unchecked';
+        });
+    }
+
+    function setStatus(id, state) {
+        const el = document.getElementById(id);
+        const icon = el.querySelector('span');
+
+        if (state === 'loading') {
+            el.classList.remove('text-on-surface-variant', 'text-tertiary');
+            el.classList.add('text-primary');
+            el.classList.remove('agent-active');
+            void el.offsetWidth;
+            el.classList.add('agent-active');
+            icon.classList.add('animate-spin');
+            icon.textContent = 'progress_activity';
+        } else if (state === 'done') {
+            el.classList.remove('text-primary');
+            el.classList.add('text-tertiary');
+            icon.classList.remove('animate-spin');
+            icon.textContent = 'check_circle';
+        }
+    }
+
+    // ── Risk level calculator ──
+    function getRiskLevel(text) {
+        const lower = text.toLowerCase();
+        if (lower.includes('emergency') || lower.includes('urgent') || lower.includes('severe') || lower.includes('immediately')) {
+            return { label: 'High', width: '80%', color: '#ffb4ab' };
+        } else if (lower.includes('moderate') || lower.includes('consult') || lower.includes('monitor')) {
+            return { label: 'Moderate', width: '45%', color: '#4edea3' };
+        } else {
+            return { label: 'Low', width: '20%', color: '#adc6ff' };
+        }
+    }
+
+    // ── Main Analyze ──
+    const analyzeBtn = document.getElementById('analyze-btn');
+
+    analyzeBtn.addEventListener('click', async () => {
+        const query = textarea.value.trim();
+        if (!query) {
+            alert('Please describe your symptoms first!');
+            return;
+        }
+
+        document.getElementById('agent-status').classList.remove('hidden');
+        resetStatuses();
+
+        analyzeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Analyzing...';
+        analyzeBtn.disabled = true;
+
+        // Animate agent statuses with timing
+        setTimeout(() => setStatus('status-a', 'loading'), 100);
+        setTimeout(() => setStatus('status-a', 'done'),   2000);
+        setTimeout(() => setStatus('status-b', 'loading'), 2000);
+        setTimeout(() => setStatus('status-b', 'done'),   4000);
+        setTimeout(() => setStatus('status-c', 'loading'), 4000);
+        setTimeout(() => setStatus('status-c', 'done'),   6000);
+        setTimeout(() => setStatus('status-v', 'loading'), 6000);
+
+        try {
+            const response = await fetch('/analyze', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query })
+            });
+
+            const data = await response.json();
+
+            setStatus('status-v', 'done');
+
+            // Update final response
+            document.getElementById('final-response-text').innerHTML =
+                data.final
+                    .replace(/\n/g, '<br>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+            // Update risk level
+            const risk = getRiskLevel(data.final);
+            document.getElementById('risk-label').textContent        = risk.label;
+            document.getElementById('risk-label').style.color        = risk.color;
+            document.getElementById('risk-bar').style.width          = risk.width;
+            document.getElementById('risk-bar').style.backgroundColor = risk.color;
+
+            // Update research cards
+            const researchContainer = document.getElementById('research-container');
+            if (data.papers && data.papers.length > 0) {
+                let html = '';
+                data.papers.forEach((paper, i) => {
+                    if (i > 0) html += '<div class="border-t border-outline-variant/10 my-md"></div>';
+                    html += `
+                        <div class="flex items-start gap-md">
+                            <span class="material-symbols-outlined text-on-surface-variant mt-xs">description</span>
+                            <div class="space-y-xs">
+                                <h4 class="text-body-md font-semibold text-on-surface">${paper.title}</h4>
+                                <p class="text-caption text-on-surface-variant">${paper.authors}</p>
+                                <p class="text-caption text-on-surface-variant">${paper.summary}</p>
+                                <a class="text-caption text-primary hover:underline flex items-center gap-xs"
+                                   href="${paper.url}" target="_blank" rel="noopener noreferrer">
+                                   <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+                                   Source: ${paper.source}
+                                </a>
+                            </div>
+                        </div>`;
+                });
+                researchContainer.innerHTML = html;
+            } else {
+                researchContainer.innerHTML = '<p class="text-caption text-on-surface-variant">No research papers found for this query.</p>';
+            }
+
+            document.getElementById('final-section').scrollIntoView({ behavior: 'smooth' });
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById('final-response-text').innerHTML =
+                '<span style="color:#ffb4ab">Something went wrong. Please try again.</span>';
+        } finally {
+            analyzeBtn.innerHTML = 'Analyze <span class="material-symbols-outlined text-[18px]">auto_awesome</span>';
+            analyzeBtn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>
