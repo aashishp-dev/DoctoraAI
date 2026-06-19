@@ -317,20 +317,19 @@
 
     if (SpeechRecognition) {
         const recognition = new SpeechRecognition();
-        recognition.continuous = true;      // keeps listening
-        recognition.interimResults = true;  // shows partial text
+        recognition.continuous = true;
+        recognition.interimResults = true;
         recognition.lang = 'en-US';
 
         let isListening = false;
-        let finalTranscript = '';
+        let baseText = '';        // text that existed before voice started
+        let finalizedChunks = []; // each finalized result stored ONCE by index
 
         voiceBtn.addEventListener('click', () => {
             if (!isListening) {
-                // FIX 1: Preserve whatever the user already typed in the box!
-                finalTranscript = textarea.value; 
-                if (finalTranscript && !finalTranscript.endsWith(' ')) {
-                    finalTranscript += ' '; // Add a space so voice doesn't merge with typed text
-                }
+                baseText = textarea.value.trim();
+                if (baseText) baseText += ' ';
+                finalizedChunks = [];
 
                 try {
                     recognition.start();
@@ -349,20 +348,20 @@
 
         recognition.onresult = (event) => {
             let interimTranscript = '';
-            for (let i = event.resultIndex; i < event.results.length; i++) {
-                if (event.results[i].isFinal) {
-                    // Append only the finalized chunks
-                    finalTranscript += event.results[i][0].transcript + ' ';
+
+            for (let i = 0; i < event.results.length; i++) {
+                const result = event.results[i];
+                if (result.isFinal) {
+                    // Only store this index ONCE — overwrite, never append-on-repeat
+                    finalizedChunks[i] = result[0].transcript;
                 } else {
-                    // Keep updating the partial, unfinalized chunk
-                    interimTranscript += event.results[i][0].transcript;
+                    interimTranscript += result[0].transcript;
                 }
             }
 
-            // Show both final + interim in textarea
-            textarea.value = finalTranscript + interimTranscript;
-            
-            // Trigger resize
+            const finalText = finalizedChunks.filter(Boolean).join(' ');
+            textarea.value = baseText + finalText + (interimTranscript ? ' ' + interimTranscript : '');
+
             textarea.style.height = 'auto';
             textarea.style.height = textarea.scrollHeight + 'px';
         };
@@ -370,10 +369,8 @@
         recognition.onend = () => {
             isListening = false;
             voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
-            // Ensure the final state cleans up any lingering interim text
-            if (finalTranscript.trim()) {
-                textarea.value = finalTranscript.trim() + ' ';
-            }
+            // Lock in final clean text, trim extra spaces
+            textarea.value = textarea.value.replace(/\s+/g, ' ').trim();
         };
 
         recognition.onerror = (event) => {
