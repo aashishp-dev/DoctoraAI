@@ -35,6 +35,23 @@ def parse_research(research_text):
             pass
     return papers
 
+def parse_risk_level(final_text):
+    risk_map = {
+        "high": {"label": "High", "width": "85%", "color": "#ffb4ab"},
+        "moderate": {"label": "Moderate", "width": "50%", "color": "#4edea3"},
+        "low": {"label": "Low", "width": "20%", "color": "#adc6ff"}
+    }
+    
+    first_line = final_text.strip().split("\n")[0].lower()
+    
+    for key in risk_map:
+        if key in first_line:
+            # Strip the RISK_LEVEL line out of the displayed text
+            clean_text = final_text.split("\n", 1)[1].strip() if "\n" in final_text else final_text
+            return risk_map[key], clean_text
+        
+    return risk_map["moderate"], final_text
+
 def run_doctoraai(user_query):
 
     print("Agent A thinking...")
@@ -88,33 +105,40 @@ def run_doctoraai(user_query):
     )
     print("Validator synthesizing...")
     final = ask_agent(
-        f"""You are a medical validation agent.
-        Three specialist AI agents analyzed this query: "{user_query}"
+            f"""You are a medical validation agent.
+            Three specialist AI agents analyzed this query: "{user_query}"
 
-        Agent A (Diagnosis) said:
-        {diagnosis}
+            Agent A (Diagnosis) said:
+            {diagnosis}
 
-        Agent B (Treatment) said:
-        {treatment}
+            Agent B (Treatment) said:
+            {treatment}
 
-        Agent C (Research) said:
-        {research}
+            Agent C (Research) said:
+            {research}
 
-        Your job:
-        1. Synthesize into a SHORT, structured response (max 200 words)
-        2. Use this exact format:
+            Your job:
+            1. Synthesize into a SHORT, structured response (max 200 words)
+            2. Use this exact format:
 
-        **Likely Condition:** [2-3 conditions max]
-        
-        **Key Observations:** [3-4 bullet points only]
-        
-        **Recommended Actions:** [3-4 bullet points only]
-        
-        ⚠️ **Disclaimer:** Always consult a licensed medical professional.
-        
-        Be concise. No long paragraphs.""",
-        ""
-    )
+            RISK_LEVEL: [Low/Moderate/High]
+
+            **Likely Condition:** [2-3 conditions max]
+
+            **Key Observations:** [2-3 bullet points only]
+
+            **Recommended Actions:** [3-4 bullet points only]
+
+            ⚠️ **Disclaimer:** Always consult a licensed medical professional.
+
+            Risk level guide:
+            - High: emergency symptoms, needs immediate medical attention
+            - Moderate: should see a doctor soon, not urgent but concerning
+            - Low: manageable at home, routine monitoring is enough
+
+            Be concise. No long paragraphs. The RISK_LEVEL line must be the very first line.""",
+            ""
+        )
 
     return diagnosis, treatment, research, final
 

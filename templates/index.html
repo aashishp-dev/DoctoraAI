@@ -420,19 +420,7 @@
             icon.textContent = 'check_circle';
         }
     }
-
-    // ── Risk level calculator ──
-    function getRiskLevel(text) {
-        const lower = text.toLowerCase();
-        if (lower.includes('emergency') || lower.includes('urgent') || lower.includes('severe') || lower.includes('immediately')) {
-            return { label: 'High', width: '80%', color: '#ffb4ab' };
-        } else if (lower.includes('moderate') || lower.includes('consult') || lower.includes('monitor')) {
-            return { label: 'Moderate', width: '45%', color: '#4edea3' };
-        } else {
-            return { label: 'Low', width: '20%', color: '#adc6ff' };
-        }
-    }
-
+    
     // ── Main Analyze ──
     const analyzeBtn = document.getElementById('analyze-btn');
 
@@ -476,7 +464,7 @@
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
             // Update risk level
-            const risk = getRiskLevel(data.final);
+            const risk = data.risk;
             document.getElementById('risk-label').textContent        = risk.label;
             document.getElementById('risk-label').style.color        = risk.color;
             document.getElementById('risk-bar').style.width          = risk.width;
