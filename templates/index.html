@@ -324,69 +324,73 @@
         let isListening = false;
         let finalTranscript = '';
 
-    voiceBtn.addEventListener('click', () => {
-        if (!isListening) {
-            // START listening
-            finalTranscript = '';
-            try {
-                recognition.start();
-                isListening = true;
-                voiceBtn.innerHTML = `
-                    <span class="material-symbols-outlined text-[20px]" 
-                          style="color:#4edea3;animation:pulse-glow 1s infinite;">mic</span> 
-                    Tap to stop`;
-            } catch(e) {
-                console.error('Could not start recognition:', e);
-            }
-        } else {
-            // STOP listening
-            recognition.stop();
-        }
-    });
+        voiceBtn.addEventListener('click', () => {
+            if (!isListening) {
+                // FIX 1: Preserve whatever the user already typed in the box!
+                finalTranscript = textarea.value; 
+                if (finalTranscript && !finalTranscript.endsWith(' ')) {
+                    finalTranscript += ' '; // Add a space so voice doesn't merge with typed text
+                }
 
-    recognition.onresult = (event) => {
-        let interimTranscript = '';
-        finalTranscript = '';
-
-        for (let i = 0; i < event.results.length; i++) {
-            if (event.results[i].isFinal) {
-                finalTranscript += event.results[i][0].transcript + ' ';
+                try {
+                    recognition.start();
+                    isListening = true;
+                    voiceBtn.innerHTML = `
+                        <span class="material-symbols-outlined text-[20px]" 
+                            style="color:#4edea3;animation:pulse-glow 1s infinite;">mic</span> 
+                        Tap to stop`;
+                } catch(e) {
+                    console.error('Could not start recognition:', e);
+                }
             } else {
-                interimTranscript += event.results[i][0].transcript;
+                recognition.stop();
             }
-        }
+        });
 
-        // Show both final + interim in textarea
-        textarea.value = finalTranscript + interimTranscript;
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-    };
+        recognition.onresult = (event) => {
+            let interimTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    // Append only the finalized chunks
+                    finalTranscript += event.results[i][0].transcript + ' ';
+                } else {
+                    // Keep updating the partial, unfinalized chunk
+                    interimTranscript += event.results[i][0].transcript;
+                }
+            }
 
-    recognition.onend = () => {
-        isListening = false;
-        voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
-        // Keep whatever was transcribed in textarea
-        if (finalTranscript.trim()) {
-            textarea.value = finalTranscript.trim();
-        }
-    };
+            // Show both final + interim in textarea
+            textarea.value = finalTranscript + interimTranscript;
+            
+            // Trigger resize
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        };
 
-    recognition.onerror = (event) => {
-        isListening = false;
-        voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
-        if (event.error === 'not-allowed') {
-            alert('Microphone blocked. Allow mic access in browser settings and refresh.');
-        } else if (event.error === 'no-speech') {
-            // silently reset — no need to alert
-            console.log('No speech detected');
-        } else {
-            console.error('Speech error:', event.error);
-        }
-    };
+        recognition.onend = () => {
+            isListening = false;
+            voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
+            // Ensure the final state cleans up any lingering interim text
+            if (finalTranscript.trim()) {
+                textarea.value = finalTranscript.trim() + ' ';
+            }
+        };
 
-} else {
-    voiceBtn.style.display = 'none';
-}
+        recognition.onerror = (event) => {
+            isListening = false;
+            voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
+            if (event.error === 'not-allowed') {
+                alert('Microphone blocked. Allow mic access in browser settings and refresh.');
+            } else if (event.error === 'no-speech') {
+                console.log('No speech detected');
+            } else {
+                console.error('Speech error:', event.error);
+            }
+        };
+
+    } else {
+        voiceBtn.style.display = 'none';
+    }
 
     // ── Agent status helpers ──
     function resetStatuses() {
