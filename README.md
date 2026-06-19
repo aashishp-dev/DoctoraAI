@@ -5,9 +5,9 @@
 Built for the **INDIA.RUNS Redrob x H2S** — Track 2: Ideathon Challenge.
 
 <p align="center">
-  <a href=" Link:https://doctora-ai.vercel.app/"><strong>🔗•
-  <a href="#-how-it-works"><strong>How It Works</strong></a> •
-  <a href="#-tech-stack"><strong>Tech Stack</strong></a> •
+  <a href="https://doctora-ai.vercel.app/"><strong> Link🔗</strong></a>•
+  <a href="#how-it-works"><strong>How It Works</strong></a> •
+  <a href="#tech-stack"><strong>Tech Stack</strong></a> •
   <a href="#-getting-started"><strong>Getting Started</strong></a>
 </p>
 
@@ -83,7 +83,7 @@ This mirrors how real clinical decision-making benefits from second opinions —
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
