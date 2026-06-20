@@ -4,7 +4,8 @@ from agents import (
     run_doctoraai,
     parse_research,
     parse_risk_level,
-    get_specialist
+    get_specialist,
+    ask_agent
 )
 
 app = Flask(__name__)
@@ -35,7 +36,61 @@ def analyze():
         "specialist": specialist
     })
 
+import fitz
+import pytesseract
+from PIL import Image
 
+@app.route("/upload-lab", methods=["POST"])
+def upload_lab():
+
+    if "file" not in request.files:
+        return jsonify({"error": "No file uploaded"}), 400
+
+    file = request.files["file"]
+
+    text = ""
+
+    if file.filename.endswith(".pdf"):
+
+        pdf = fitz.open(
+            stream=file.read(),
+            filetype="pdf"
+        )
+
+        for page in pdf:
+            text += page.get_text()
+
+    elif file.filename.lower().endswith(
+        (".png", ".jpg", ".jpeg")
+    ):
+
+        image = Image.open(file)
+        text = pytesseract.image_to_string(image)
+
+    else:
+        return jsonify({
+            "error": "Unsupported file type"
+        }), 400
+
+    analysis = ask_agent(
+        """
+You are a medical lab report analyzer.
+
+Analyze the report and provide:
+
+1. Summary
+2. Abnormal values
+3. Possible concerns
+4. Recommended specialist
+
+Keep it short and clear.
+        """,
+        text
+    )
+
+    return jsonify({
+        "analysis": analysis
+    })
 if __name__ == "__main__":
     app.run(
         debug=True,
