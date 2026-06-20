@@ -1,5 +1,5 @@
 from flask import Flask, send_from_directory, request, jsonify
-from agents import run_doctoraai, parse_research,parse_risk_level
+from agents import run_doctoraai, parse_research,parse_risk_level,get_specialist_ai
 
 
 
@@ -19,14 +19,16 @@ def analyze():
     diagnosis, treatment, research, final = run_doctoraai(user_query)
     papers = parse_research(research)
     risk, clean_final = parse_risk_level(final)
-    
-    return jsonify({
-        "diagnosis": diagnosis,
-        "treatment": treatment,
-        "final": clean_final,
-        "papers": papers,
-        "risk": risk
-    })
+    specialist = get_specialist_ai(client, query)
 
+
+    return jsonify({
+"final": final_response,
+"risk": risk,
+"papers": papers,
+"specialist": specialist
+})
+
+    
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)

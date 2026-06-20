@@ -146,3 +146,57 @@ if __name__ == "__main__":
     result = run_doctoraai("I have a headache and fever since 2 days")
     print("\n===FINAL RESPONSE===\n")
     print(result[3])
+    SPECIALIST_MAP = {
+    "headache": "Neurologist",
+    "migraine": "Neurologist",
+    "fever": "General Physician",
+    "cough": "Pulmonologist",
+    "breathing": "Pulmonologist",
+    "skin": "Dermatologist",
+    "rash": "Dermatologist",
+    "heart": "Cardiologist",
+    "chest pain": "Cardiologist",
+    "stomach": "Gastroenterologist",
+    "anxiety": "Psychiatrist",
+    "stress": "Psychiatrist",
+    "joint pain": "Orthopedic",
+    "bone": "Orthopedic"
+}
+
+def get_specialist(query):
+    query = query.lower()
+
+    for keyword, specialist in SPECIALIST_MAP.items():
+        if keyword in query:
+            return specialist
+
+    return "General Physician"
+def get_specialist_ai(client, symptoms):
+    prompt = f"""
+
+Based on these symptoms, determine the SINGLE most appropriate medical specialist.
+
+Return ONLY the specialist name.
+
+Examples:
+Headache -> Neurologist
+Skin rash -> Dermatologist
+Chest pain -> Cardiologist
+Stomach pain -> Gastroenterologist
+
+Symptoms:
+{symptoms}
+"""
+
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        temperature=0
+    )
+
+    return response.choices[0].message.content.strip()
