@@ -192,8 +192,59 @@
 }
 </style>
 
+
+<style id="merged-upgrade">
+#startup-screen{
+position:fixed;inset:0;background:#10131a;
+display:flex;justify-content:center;align-items:center;
+z-index:99999;transition:opacity .6s ease;
+}
+.startup-box{text-align:center;color:white}
+.startup-logo{font-size:5rem;color:#4edea3;animation:pulse 1.5s infinite}
+.loader{width:260px;height:8px;background:#1e293b;border-radius:999px;overflow:hidden;margin-top:15px}
+.loader-fill{height:100%;width:0;background:#4edea3;animation:loadbar 3s forwards}
+@keyframes loadbar{to{width:100%}}
+@keyframes pulse{50%{transform:scale(1.08)}}
+
+.medical-watermark{
+position:fixed;top:50%;left:50%;
+transform:translate(-50%,-50%);
+font-size:22rem;
+color:rgba(78,222,163,.04);
+pointer-events:none;
+z-index:-1;
+}
+
+.scan-box{position:relative;overflow:hidden}
+.scan-box:after{
+content:'';
+position:absolute;
+left:0;
+width:100%;
+height:3px;
+background:linear-gradient(90deg,transparent,#4edea3,transparent);
+box-shadow:0 0 15px #4edea3;
+animation:scanline 3s linear infinite;
+}
+@keyframes scanline{
+0%{top:0;opacity:0}
+20%,80%{opacity:1}
+100%{top:100%;opacity:0}
+}
+</style>
+
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<div id="startup-screen">
+ <div class="startup-box">
+  <div class="startup-logo">⚕</div>
+  <h1 style="font-size:2rem">DoctoraAI</h1>
+  <p id="boot-text">Initializing Clinical Intelligence...</p>
+  <div class="loader"><div class="loader-fill"></div></div>
+ </div>
+</div>
+<div class="medical-watermark">⚕</div>
+
 
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl border-b border-outline-variant/20 flex items-center justify-between px-margin-mobile md:px-gutter h-16">
@@ -211,7 +262,7 @@
             <p class="text-primary font-label-md uppercase tracking-widest">Symptom Analysis</p>
             <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">What symptoms are you experiencing?</h2>
         </div>
-        <div class="glass-panel rounded-[2rem] p-base md:p-sm group focus-within:ring-2 ring-primary/30 transition-all">
+        <div id="symptom-panel" class="glass-panel rounded-[2rem] p-base md:p-sm group focus-within:ring-2 ring-primary/30 transition-all">
             <div class="relative">
                 <textarea id="symptom-input" class="w-full bg-transparent border-none focus:ring-0 text-body-lg text-on-surface placeholder-on-surface-variant/50 p-md resize-none min-h-[140px]" placeholder="e.g. Persistent headache for 3 days, localized behind the left eye, accompanied by sensitivity to light..."></textarea>
                 <div class="flex items-center justify-between mt-sm p-base">
@@ -450,6 +501,7 @@
         }
 
         document.getElementById('agent-status').classList.remove('hidden');
+document.getElementById('symptom-panel')?.classList.add('scan-box');
         resetStatuses();
 
         analyzeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Analyzing...';
@@ -522,9 +574,18 @@
                 '<span style="color:#ffb4ab">Something went wrong. Please try again.</span>';
         } finally {
             analyzeBtn.innerHTML = 'Analyze <span class="material-symbols-outlined text-[18px]">auto_awesome</span>';
-            analyzeBtn.disabled = false;
+            document.getElementById('symptom-panel')?.classList.remove('scan-box');
+analyzeBtn.disabled = false;
         }
     });
+
+setTimeout(()=>{const e=document.getElementById('boot-text'); if(e)e.textContent='Loading Medical Knowledge Base...';},1000);
+setTimeout(()=>{const e=document.getElementById('boot-text'); if(e)e.textContent='Activating AI Agents...';},2000);
+setTimeout(()=>{
+ const s=document.getElementById('startup-screen');
+ if(s){s.style.opacity='0'; setTimeout(()=>s.remove(),700);}
+},3200);
+
 </script>
 
 </body>
