@@ -157,6 +157,8 @@ SPECIALIST_MAP = {
 "joint pain": "Orthopedic",
 "bone": "Orthopedic"
 }
+python
+# filepath: agents.py
 def get_specialist(query):
     query = query.lower()
 
@@ -168,14 +170,9 @@ def get_specialist(query):
 
 
 if __name__ == "__main__":
-    result = run_doctoraai("I have a headache and fever since 2 days")
-    print(result)
-
-if __name__ == "__main__":
     result = run_doctoraai(
         "I have a headache and fever since 2 days"
     )
+    print(result)
 
-print("\n=== FINAL RESPONSE ===\n")
-print(result[3])
 
