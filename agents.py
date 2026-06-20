@@ -141,8 +141,6 @@ def run_doctoraai(user_query):
         )
 
     return diagnosis, treatment, research, final
-
-
 SPECIALIST_MAP = {
 "headache": "Neurologist",
 "migraine": "Neurologist",
@@ -159,14 +157,19 @@ SPECIALIST_MAP = {
 "joint pain": "Orthopedic",
 "bone": "Orthopedic"
 }
-
 def get_specialist(query):
-query = query.lower()
-for keyword, specialist in SPECIALIST_MAP.items():
-    if keyword in query:
-        return specialist
+    query = query.lower()
 
-return "General Physician"
+    for keyword, specialist in SPECIALIST_MAP.items():
+        if keyword in query:
+            return specialist
+
+    return "General Physician"
+
+
+if __name__ == "__main__":
+    result = run_doctoraai("I have a headache and fever since 2 days")
+    print(result)
 
 if __name__ == "__main__":
     result = run_doctoraai(
