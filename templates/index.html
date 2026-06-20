@@ -175,34 +175,39 @@
     }
 </script>
 
-<style id="modern-health-ui">
+<style id="v5-redesign">
 body{
-background:linear-gradient(180deg,#0b1220 0%,#10131a 100%);
+ background:
+ radial-gradient(circle at 20% 20%, rgba(59,130,246,.12), transparent 35%),
+ radial-gradient(circle at 80% 70%, rgba(78,222,163,.10), transparent 35%),
+ #0b1220;
 }
-.glass-panel,.ai-gradient-border{
-box-shadow:0 20px 60px rgba(0,0,0,.25);
-}
-.hero-card{
-background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(78,222,163,.08));
+.hero-banner{
+background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(78,222,163,.08));
 border:1px solid rgba(255,255,255,.08);
-border-radius:24px;
-padding:16px;
-margin-bottom:20px;
-animation:fadeIn .8s ease;
+border-radius:28px;padding:20px;
+backdrop-filter:blur(12px);
+animation:heroIn .8s ease;
 }
-@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
-#analyze-btn{transition:.25s all}
-#analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(173,198,255,.4)}
-.paper-card{opacity:0;transform:translateY(18px);animation:slideUp .7s forwards}
+@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.mesh-bg{position:fixed;inset:0;pointer-events:none;opacity:.08;background-image:
+linear-gradient(rgba(78,222,163,.3) 1px,transparent 1px),
+linear-gradient(90deg,rgba(78,222,163,.3) 1px,transparent 1px);
+background-size:60px 60px;}
+.glass-panel,.ai-gradient-border{box-shadow:0 20px 60px rgba(0,0,0,.35)}
+#analyze-btn{transition:.3s all;animation:pulseBtn 2s infinite}
+@keyframes pulseBtn{50%{box-shadow:0 0 25px rgba(173,198,255,.5)}}
+.paper-card{opacity:0;transform:translateY(25px);animation:slideUp .7s forwards}
 @keyframes slideUp{to{opacity:1;transform:none}}
-.risk-pulse{animation:risk 2s infinite}
-@keyframes risk{50%{box-shadow:0 0 18px currentColor}}
 .typing-cursor::after{content:'|';animation:blink .8s infinite}
 @keyframes blink{50%{opacity:0}}
+.agent-timeline{display:flex;gap:12px;margin:10px 0;flex-wrap:wrap}
+.agent-chip{padding:8px 12px;border-radius:999px;background:rgba(78,222,163,.08);border:1px solid rgba(78,222,163,.15)}
+.gauge{height:10px;border-radius:999px;background:#233143;overflow:hidden}
+.gauge-fill{height:100%;width:0;background:linear-gradient(90deg,#4edea3,#3B82F6);transition:1s}
 </style>
-
 </head>
-<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32"><div class="mesh-bg"></div>
 
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl border-b border-outline-variant/20 flex items-center justify-between px-margin-mobile md:px-gutter h-16">
@@ -216,11 +221,13 @@ animation:fadeIn .8s ease;
 
     <!-- Input Section -->
     <section class="space-y-md max-w-3xl">
-<div class="hero-card">
-<div style="display:flex;gap:12px;flex-wrap:wrap">
-<div>🩺 AI Medical Analysis</div>
-<div>🧠 Multi-Agent Reasoning</div>
-<div>📚 Research Backed</div>
+<div class="hero-banner">
+<h3 style="font-size:22px;font-weight:700;margin-bottom:10px">🩺 AI-Powered Clinical Intelligence</h3>
+<div class="agent-timeline">
+<div class="agent-chip">Diagnosis Agent</div>
+<div class="agent-chip">Treatment Agent</div>
+<div class="agent-chip">Research Agent</div>
+<div class="agent-chip">Recommendation Agent</div>
 </div>
 </div>
         <div class="space-y-xs">
@@ -289,7 +296,7 @@ animation:fadeIn .8s ease;
                     </div>
                 </div>
                 <div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">
-                    <h4 class="font-label-md text-on-surface-variant uppercase">Potential Risk Level</h4>
+                    <h4 class="font-label-md text-on-surface-variant uppercase">Potential Risk Level</h4><div class="gauge"><div id="gauge-fill" class="gauge-fill"></div></div>
                     <div class="flex items-center justify-between">
                         <span id="risk-label" class="text-headline-md text-tertiary">—</span>
                         <span class="material-symbols-outlined text-tertiary">warning</span>
@@ -460,9 +467,9 @@ function typeDiagnosis(el,text){
 el.innerHTML='';
 el.classList.add('typing-cursor');
 let i=0;
-(function t(){
- if(i<text.length){el.innerHTML+=text.charAt(i++);setTimeout(t,12);}
- else{el.classList.remove('typing-cursor');}
+(function w(){
+ if(i<text.length){el.innerHTML+=text.charAt(i++);setTimeout(w,10);}
+ else el.classList.remove('typing-cursor');
 })();
 }
 
@@ -480,7 +487,8 @@ let i=0;
         resetStatuses();
 document.getElementById('final-response-text').innerHTML='🩺 Scanning symptoms...';
 setTimeout(()=>document.getElementById('final-response-text').innerHTML='🧠 Consulting medical agents...',1200);
-setTimeout(()=>document.getElementById('final-response-text').innerHTML='📚 Reviewing research papers...',2600);
+setTimeout(()=>document.getElementById('final-response-text').innerHTML='📚 Reviewing medical literature...',2500);
+setTimeout(()=>document.getElementById('final-response-text').innerHTML='✅ Generating diagnosis...',4000);
 
         analyzeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Analyzing...';
         analyzeBtn.disabled = true;
@@ -515,7 +523,7 @@ data.final.replace(/\*\*(.*?)\*\*/g,'$1'));
             document.getElementById('risk-label').style.color        = risk.color;
             document.getElementById('risk-bar').style.width          = risk.width;
             document.getElementById('risk-bar').style.backgroundColor = risk.color;
-document.getElementById('risk-label').classList.add('risk-pulse');
+document.getElementById('gauge-fill').style.width = risk.width;
 
             // Update research cards
             const researchContainer = document.getElementById('research-container');
