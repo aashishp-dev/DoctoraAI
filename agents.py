@@ -157,8 +157,7 @@ SPECIALIST_MAP = {
 "joint pain": "Orthopedic",
 "bone": "Orthopedic"
 }
-python
-# filepath: agents.py
+
 def get_specialist(query):
     query = query.lower()
 
