@@ -175,40 +175,34 @@
     }
 </script>
 
-<style id="hackathon-v3">
-.ecg-hero{position:fixed;top:70px;left:0;width:100%;opacity:.12;pointer-events:none;z-index:0}
-.ecg-hero svg{width:300%;animation:ecgmove 10s linear infinite}
-@keyframes ecgmove{from{transform:translateX(0)}to{transform:translateX(-66%)}}
-
-.floating-particle{position:fixed;width:4px;height:4px;background:#4edea3;border-radius:50%;opacity:.4;animation:floatUp 12s linear infinite}
-@keyframes floatUp{from{transform:translateY(100vh)}to{transform:translateY(-100px)}}
-
-.glow-card{animation:cardGlow 3s ease-in-out infinite}
-@keyframes cardGlow{50%{box-shadow:0 0 30px rgba(78,222,163,.15)}}
-
-.network{display:flex;justify-content:center;gap:12px;margin:10px 0}
-.network span{width:10px;height:10px;border-radius:50%;background:#4edea3;animation:pulseN 1.5s infinite}
-.network span:nth-child(2){animation-delay:.2s}.network span:nth-child(3){animation-delay:.4s}.network span:nth-child(4){animation-delay:.6s}
-@keyframes pulseN{50%{transform:scale(1.8)}}
-
-#analyze-btn{position:relative;overflow:hidden}
-#analyze-btn::before{content:'';position:absolute;inset:-4px;border:2px solid #4edea3;border-radius:14px;animation:ring 2s infinite}
-@keyframes ring{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.2)}}
-
-.paper-card{opacity:0;transform:translateY(30px);animation:slideIn .8s forwards}
-@keyframes slideIn{to{opacity:1;transform:translateY(0)}}
-
-.risk-pulse{animation:riskPulse 2s infinite}
-@keyframes riskPulse{50%{box-shadow:0 0 20px currentColor}}
+<style id="modern-health-ui">
+body{
+background:linear-gradient(180deg,#0b1220 0%,#10131a 100%);
+}
+.glass-panel,.ai-gradient-border{
+box-shadow:0 20px 60px rgba(0,0,0,.25);
+}
+.hero-card{
+background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(78,222,163,.08));
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:16px;
+margin-bottom:20px;
+animation:fadeIn .8s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+#analyze-btn{transition:.25s all}
+#analyze-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(173,198,255,.4)}
+.paper-card{opacity:0;transform:translateY(18px);animation:slideUp .7s forwards}
+@keyframes slideUp{to{opacity:1;transform:none}}
+.risk-pulse{animation:risk 2s infinite}
+@keyframes risk{50%{box-shadow:0 0 18px currentColor}}
+.typing-cursor::after{content:'|';animation:blink .8s infinite}
+@keyframes blink{50%{opacity:0}}
 </style>
+
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
-<div class="ecg-hero"><svg viewBox="0 0 1000 100"><path d="M0 50 L150 50 L180 20 L210 80 L250 10 L290 50 L1000 50" stroke="#4edea3" fill="none" stroke-width="2"/></svg></div>
-<div class="floating-particle" style="left:10%"></div>
-<div class="floating-particle" style="left:30%;animation-delay:2s"></div>
-<div class="floating-particle" style="left:60%;animation-delay:4s"></div>
-<div class="floating-particle" style="left:80%;animation-delay:6s"></div>
-
 
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl border-b border-outline-variant/20 flex items-center justify-between px-margin-mobile md:px-gutter h-16">
@@ -222,6 +216,13 @@
 
     <!-- Input Section -->
     <section class="space-y-md max-w-3xl">
+<div class="hero-card">
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div>🩺 AI Medical Analysis</div>
+<div>🧠 Multi-Agent Reasoning</div>
+<div>📚 Research Backed</div>
+</div>
+</div>
         <div class="space-y-xs">
             <p class="text-primary font-label-md uppercase tracking-widest">Symptom Analysis</p>
             <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">What symptoms are you experiencing?</h2>
@@ -250,7 +251,7 @@
     <!-- Agent Status Section -->
     <section id="agent-status" class="hidden space-y-md max-w-3xl">
         <div class="glass-panel rounded-xl p-md space-y-sm">
-            <p class="text-primary font-label-md uppercase tracking-widest">Consulting Agents</p><div class="network"><span></span><span></span><span></span><span></span></div>
+            <p class="text-primary font-label-md uppercase tracking-widest">Consulting Agents</p>
             <div class="space-y-xs">
                 <div id="status-a" class="flex items-center gap-sm text-on-surface-variant text-body-md">
                     <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span> Diagnosing the issue
@@ -274,7 +275,7 @@
             <span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">analytics</span>
             <h3 class="font-headline-md text-headline-md text-on-surface">Final Response</h3>
         </div>
-        <div class="ai-gradient-border glow-card p-md md:p-lg">
+        <div class="ai-gradient-border p-md md:p-lg">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
                 <div class="md:col-span-2 space-y-md">
                     <div class="flex items-center gap-base">
@@ -454,7 +455,18 @@
         }
     }
     
-    // ── Main Analyze ──
+    
+function typeDiagnosis(el,text){
+el.innerHTML='';
+el.classList.add('typing-cursor');
+let i=0;
+(function t(){
+ if(i<text.length){el.innerHTML+=text.charAt(i++);setTimeout(t,12);}
+ else{el.classList.remove('typing-cursor');}
+})();
+}
+
+// ── Main Analyze ──
     const analyzeBtn = document.getElementById('analyze-btn');
 
     analyzeBtn.addEventListener('click', async () => {
@@ -466,6 +478,9 @@
 
         document.getElementById('agent-status').classList.remove('hidden');
         resetStatuses();
+document.getElementById('final-response-text').innerHTML='🩺 Scanning symptoms...';
+setTimeout(()=>document.getElementById('final-response-text').innerHTML='🧠 Consulting medical agents...',1200);
+setTimeout(()=>document.getElementById('final-response-text').innerHTML='📚 Reviewing research papers...',2600);
 
         analyzeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Analyzing...';
         analyzeBtn.disabled = true;
@@ -491,10 +506,8 @@
             setStatus('status-v', 'done');
 
             // Update final response
-            document.getElementById('final-response-text').innerHTML =
-                data.final
-                    .replace(/\n/g, '<br>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            typeDiagnosis(document.getElementById('final-response-text'),
+data.final.replace(/\*\*(.*?)\*\*/g,'$1'));
 
             // Update risk level
             const risk = data.risk;
@@ -502,6 +515,7 @@
             document.getElementById('risk-label').style.color        = risk.color;
             document.getElementById('risk-bar').style.width          = risk.width;
             document.getElementById('risk-bar').style.backgroundColor = risk.color;
+document.getElementById('risk-label').classList.add('risk-pulse');
 
             // Update research cards
             const researchContainer = document.getElementById('research-container');
@@ -510,7 +524,7 @@
                 data.papers.forEach((paper, i) => {
                     if (i > 0) html += '<div class="border-t border-outline-variant/10 my-md"></div>';
                     html += `
-                        <div class="flex items-start gap-md">
+                        <div class="paper-card flex items-start gap-md">
                             <span class="material-symbols-outlined text-on-surface-variant mt-xs">description</span>
                             <div class="space-y-xs">
                                 <h4 class="text-body-md font-semibold text-on-surface">${paper.title}</h4>
