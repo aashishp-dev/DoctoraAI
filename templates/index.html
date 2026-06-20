@@ -192,34 +192,8 @@
 }
 </style>
 
-
-<style id="visible-medical-icons">
-.medical-icons span{
-    position:fixed;
-    font-size:8rem;
-    color:rgba(78,222,163,.10);
-    pointer-events:none;
-    z-index:-1;
-    animation:floatMedical 10s ease-in-out infinite;
-}
-.medical-icons span:nth-child(1){top:10%;left:5%;}
-.medical-icons span:nth-child(2){top:60%;right:10%;animation-delay:3s;}
-.medical-icons span:nth-child(3){bottom:15%;left:45%;animation-delay:6s;}
-
-@keyframes floatMedical{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-20px);}
-}
-</style>
-
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
-<div class="medical-icons">
-    <span>⚕</span>
-    <span>🩺</span>
-    <span>✚</span>
-</div>
-
 
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl border-b border-outline-variant/20 flex items-center justify-between px-margin-mobile md:px-gutter h-16">
