@@ -174,8 +174,41 @@
       },
     }
 </script>
+
+<style id="hackathon-v3">
+.ecg-hero{position:fixed;top:70px;left:0;width:100%;opacity:.12;pointer-events:none;z-index:0}
+.ecg-hero svg{width:300%;animation:ecgmove 10s linear infinite}
+@keyframes ecgmove{from{transform:translateX(0)}to{transform:translateX(-66%)}}
+
+.floating-particle{position:fixed;width:4px;height:4px;background:#4edea3;border-radius:50%;opacity:.4;animation:floatUp 12s linear infinite}
+@keyframes floatUp{from{transform:translateY(100vh)}to{transform:translateY(-100px)}}
+
+.glow-card{animation:cardGlow 3s ease-in-out infinite}
+@keyframes cardGlow{50%{box-shadow:0 0 30px rgba(78,222,163,.15)}}
+
+.network{display:flex;justify-content:center;gap:12px;margin:10px 0}
+.network span{width:10px;height:10px;border-radius:50%;background:#4edea3;animation:pulseN 1.5s infinite}
+.network span:nth-child(2){animation-delay:.2s}.network span:nth-child(3){animation-delay:.4s}.network span:nth-child(4){animation-delay:.6s}
+@keyframes pulseN{50%{transform:scale(1.8)}}
+
+#analyze-btn{position:relative;overflow:hidden}
+#analyze-btn::before{content:'';position:absolute;inset:-4px;border:2px solid #4edea3;border-radius:14px;animation:ring 2s infinite}
+@keyframes ring{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.2)}}
+
+.paper-card{opacity:0;transform:translateY(30px);animation:slideIn .8s forwards}
+@keyframes slideIn{to{opacity:1;transform:translateY(0)}}
+
+.risk-pulse{animation:riskPulse 2s infinite}
+@keyframes riskPulse{50%{box-shadow:0 0 20px currentColor}}
+</style>
 </head>
 <body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<div class="ecg-hero"><svg viewBox="0 0 1000 100"><path d="M0 50 L150 50 L180 20 L210 80 L250 10 L290 50 L1000 50" stroke="#4edea3" fill="none" stroke-width="2"/></svg></div>
+<div class="floating-particle" style="left:10%"></div>
+<div class="floating-particle" style="left:30%;animation-delay:2s"></div>
+<div class="floating-particle" style="left:60%;animation-delay:4s"></div>
+<div class="floating-particle" style="left:80%;animation-delay:6s"></div>
+
 
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl border-b border-outline-variant/20 flex items-center justify-between px-margin-mobile md:px-gutter h-16">
@@ -217,7 +250,7 @@
     <!-- Agent Status Section -->
     <section id="agent-status" class="hidden space-y-md max-w-3xl">
         <div class="glass-panel rounded-xl p-md space-y-sm">
-            <p class="text-primary font-label-md uppercase tracking-widest">Consulting Agents</p>
+            <p class="text-primary font-label-md uppercase tracking-widest">Consulting Agents</p><div class="network"><span></span><span></span><span></span><span></span></div>
             <div class="space-y-xs">
                 <div id="status-a" class="flex items-center gap-sm text-on-surface-variant text-body-md">
                     <span class="material-symbols-outlined text-[18px]">radio_button_unchecked</span> Diagnosing the issue
@@ -241,7 +274,7 @@
             <span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">analytics</span>
             <h3 class="font-headline-md text-headline-md text-on-surface">Final Response</h3>
         </div>
-        <div class="ai-gradient-border p-md md:p-lg">
+        <div class="ai-gradient-border glow-card p-md md:p-lg">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
                 <div class="md:col-span-2 space-y-md">
                     <div class="flex items-center gap-base">
