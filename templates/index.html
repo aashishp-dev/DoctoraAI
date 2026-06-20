@@ -272,9 +272,20 @@ animation:scanline 3s linear infinite;
                         <button id="voice-btn" class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
                             <span class="material-symbols-outlined text-[20px]">mic</span> Voice
                         </button>
-                        <button class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
-                            <span class="material-symbols-outlined text-[20px]">attachment</span> Attach Labs
-                        </button>
+                        <input
+    type="file"
+    id="lab-file"
+    accept=".pdf,.jpg,.jpeg,.png"
+    hidden
+>
+
+<button
+    onclick="document.getElementById('lab-file').click()"
+    class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md"
+>
+    <span class="material-symbols-outlined text-[20px]">attachment</span>
+    Attach Labs
+</button>
                     </div>
                     <button id="analyze-btn" class="bg-primary hover:bg-primary-container text-on-primary font-label-md px-md py-sm rounded-xl transition-all flex items-center gap-sm active:scale-95 shadow-lg shadow-primary/20">
                         Analyze
@@ -596,6 +607,13 @@ animation:scanline 3s linear infinite;
             analyzeBtn.disabled = false;
         }
     });
+    document.getElementById('lab-file').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+
+    if(file){
+        alert("Selected: " + file.name);
+    }
+});
 </script>
 
 
