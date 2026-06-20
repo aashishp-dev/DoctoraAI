@@ -1,8 +1,10 @@
 # 🏥 DoctoraAI
 
-**A multi-agent medical AI system that orchestrates specialist AI agents to deliver validated, cross-checked health insights.**
+### AI-Powered Multi-Agent Healthcare Assistant
 
-Built for the **INDIA.RUNS Redrob x H2S** — Track 2: Ideathon Challenge.
+DoctoraAI is an intelligent healthcare platform that leverages multiple specialized AI agents to analyze symptoms, validate findings, assess risk levels, recommend specialists, and provide research-backed medical insights.
+
+Built for the **INDIA.RUNS Redrob x H2S Hackathon**.
 
 <p align="center">
   <a href="https://doctora-ai.vercel.app/"><strong> Link🔗</strong></a>•
@@ -13,151 +15,182 @@ Built for the **INDIA.RUNS Redrob x H2S** — Track 2: Ideathon Challenge.
 
 ---
 
-##  What is DoctoraAI?
+## 🚀 Problem Statement
 
-DoctoraAI isn't just another AI chatbot wrapper. It's an **"Echo Chamber" multi-agent system** — instead of a single AI guessing at a diagnosis, three independent specialist agents analyze the same query from different angles, and a fourth **Validator Agent** cross-checks their outputs before producing a final, synthesized response.
+Millions of people rely on generic AI chatbots for medical guidance. Traditional systems provide a single response with limited validation, increasing the risk of misinformation.
 
-This mirrors how real clinical decision-making benefits from second opinions — except it happens in seconds.
-
-> ⚠️ **Disclaimer:** DoctoraAI is an informational prototype only. It is not a substitute for professional medical advice, diagnosis, or treatment.
+DoctoraAI solves this by introducing a **multi-agent medical intelligence system** where multiple AI specialists independently analyze symptoms before a validator agent synthesizes the final response.
 
 ---
 
-## How It Works
+# 🧠 How DoctoraAI Works
 
-```
-                         ┌─────────────────────┐
-                         │     User Query      │
-                         │ "headache + fever   │
-                         │  for 2 days"        │
-                         └──────────┬──────────┘
-                                    │
-                                    ▼
-                ┌───────────────────────────────────┐
-                │         Orchestration Layer       │
-                └───────────────────────────────────┘
-                    │             │              │
-                    ▼             ▼              ▼
-            ┌──────────┐  ┌──────────────┐  ┌────────────┐
-            │ Agent A  │  │   Agent B    │  │  Agent C   │
-            │Diagnosis │  │  Treatment   │  │  Research  │
-            └────┬─────┘  └──────┬───────┘  └─────┬──────┘
-                 │               │                │
-                 └───────────────┼────────────────┘
-                                 ▼
-                      ┌───────────────────── ┐
-                      │   Validator Agent    │
-                      │  Cross-checks all 3, │
-                      │flags contradictions, │
-                      │ outputs risk level & │
-                      │recommended specialist│
-                      └──────────┬───────────┘
-                                 ▼
-                      ┌─────────────────────┐
-                      │  Final Response     │
-                      │ + Risk Level Badge  │
-                      │ + Research Citations│
-                      │ + Nearby Specialist │
-                      └─────────────────────┘
-```
-
-### The Four Agents
-
-| Agent | Role |
-|---|---|
-|  **Diagnosis Agent** | Analyzes symptoms, lists possible conditions by likelihood |
-|  **Treatment Agent** | Suggests general treatment approaches, flags dangerous combinations |
-|  **Research Agent** | Surfaces relevant medical literature with real source links |
-|  **Validator Agent** | Synthesizes all three, resolves contradictions, assigns risk level |
-
----
-
-## Features
-
--  **Multi-agent orchestration** — not a single LLM call, but coordinated specialist reasoning
--  **Voice input** — speak your symptoms instead of typing
--  **Dynamic risk assessment** — AI-determined Low/Moderate/High risk, not keyword guessing
--  **Linked research cards** — real, clickable references to medical literature
--  **Nearby specialist finder** — geolocation-based suggestion of the right doctor type to see
--  **Clean, dark-themed UI** — built with Tailwind, designed in Google Stitch
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| **AI Inference** | [Groq API](https://groq.com/) — Llama 3.3 70B Versatile |
-| **Backend** | Python, Flask |
-| **Frontend** | HTML, Tailwind CSS, Vanilla JS |
-| **Voice Input** | Web Speech API |
-| **Deployment** | Vercel |
-| **Design** | Google Stitch |
-
----
-
-## 📁 Project Structure
-
-```
-DoctoraAI/
-├── agents.py           # Multi-agent orchestration logic
-├── app.py               # Flask backend & API routes
-├── templates/
-│   └── index.html       # Frontend UI
-├── requirements.txt      # Python dependencies
-├── vercel.json           # Deployment config
-└── .env                  # API keys (not committed)
+```text
+User Symptoms
+      │
+      ▼
+┌─────────────────────┐
+│ Diagnosis Agent     │
+└──────────┬──────────┘
+           │
+┌──────────▼──────────┐
+│ Treatment Agent     │
+└──────────┬──────────┘
+           │
+┌──────────▼──────────┐
+│ Research Agent      │
+└──────────┬──────────┘
+           │
+┌──────────▼──────────┐
+│ Validator Agent     │
+└──────────┬──────────┘
+           │
+           ▼
+Final Verified Response
 ```
 
 ---
 
-## 🚀 Getting Started
+# ✨ Features
 
-### Prerequisites
-- Python 3.10+
-- A free [Groq API key](https://console.groq.com/keys)
+### 🩺 Multi-Agent Medical Analysis
 
-### Installation
+Multiple AI agents independently analyze the user's symptoms to improve reliability.
 
-```bash
-# Clone the repo
-git clone https://github.com/Mayank007-ahjin/DoctoraAI.git
-cd DoctoraAI
+### 📊 Dynamic Risk Assessment
 
-# Install dependencies
-pip install -r requirements.txt
+The Validator Agent assigns:
 
-# Add your API key
-echo "GROQ_API_KEY=your_key_here" > .env
+* Low Risk
+* Moderate Risk
+* High Risk
 
-# Run locally
-python app.py
+based on symptom severity and duration.
+
+### 📚 Medical Research Integration
+
+Provides relevant PubMed research references and summaries related to the user's symptoms.
+
+### 🎤 Voice Symptom Input
+
+Users can describe symptoms through speech using browser voice recognition.
+
+### 👨‍⚕️ Recommended Specialist
+
+Automatically recommends the most suitable medical specialist:
+
+* Neurologist
+* Cardiologist
+* Dermatologist
+* Pulmonologist
+* Orthopedic
+* Gastroenterologist
+* Psychiatrist
+* General Physician
+
+### 📍 Nearby Doctor Finder
+
+One-click Google Maps integration to locate nearby specialists instantly.
+
+### ⚡ Modern Interactive UI
+
+* Animated startup sequence
+* Floating medical elements
+* Symptom scanner animation
+* Medical dashboard design
+* Fully responsive interface
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+* HTML5
+* Tailwind CSS
+* Vanilla JavaScript
+
+## Backend
+
+* Python
+* Flask
+
+## AI Layer
+
+* Groq API
+* Llama 3.3 70B Versatile
+
+## Research Sources
+
+* PubMed
+
+## Deployment
+
+* Vercel
+
+---
+
+# 📂 Project Structure
+
+```text
+DoctoraAI
+│
+├── app.py
+├── agents.py
+├── requirements.txt
+├── vercel.json
+│
+└── templates
+    └── index.html
 ```
 
-Visit `http://localhost:5000` in your browser.
+---
+
+# 🔄 Multi-Agent Architecture
+
+| Agent           | Responsibility                                        |
+| --------------- | ----------------------------------------------------- |
+| Diagnosis Agent | Identifies possible conditions                        |
+| Treatment Agent | Suggests treatment approaches                         |
+| Research Agent  | Retrieves research-backed insights                    |
+| Validator Agent | Cross-checks all outputs and generates final response |
 
 ---
 
-## TO do Roadmap
+# 🎯 Key Innovations
 
-- [ ] Lab report (PDF) upload — agents read and analyze actual medical documents
-- [ ] Embedded map view for nearby specialists
+✅ Multi-Agent Reasoning
+
+✅ Cross-Agent Validation
+
+✅ Research-Based Insights
+
+✅ Specialist Recommendation
+
+✅ Google Maps Doctor Discovery
+
+✅ Voice-Based Symptom Entry
+
+✅ Risk Classification System
+
+---
+
+# ⚠ Disclaimer
+
+DoctoraAI is designed for informational and educational purposes only.
+
+It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a licensed healthcare professional regarding medical concerns.
 
 ---
 
-## 👤 Author
+# 👨‍💻 Team
 
-**Mayank Karnatak**
-B.Tech Student, GL Bajaj Institute
+### Event Horizon
 
----
+GL Bajaj Institute of Technology and Management
 
-## 🤝 Contributors
-Thanks to amazing contributors!
+Built with AI, Healthcare, and Accessibility in mind.
 
-[![DoctoraAI Contributors](https://contrib.rocks/image?repo=Mayank007-ahjin/DoctoraAI)](https://github.com/Mayank007-ahjin/DoctoraAI/graphs/contributors)
-
----
 
 ## 📄 License
 
