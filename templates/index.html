@@ -664,7 +664,27 @@
             '<h4 class="text-headline-md text-on-surface">Prescription Analysis</h4>' +
             '<span class="px-sm py-xs rounded-full text-caption font-semibold" style="background:rgba(173,198,255,0.15);color:#adc6ff">' + medicines.length + ' ' + (medicines.length === 1 ? 'Medicine' : 'Medicines') + ' Found</span>' +
             '</div>';
+        html += `
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
 
+<div class="bg-surface-container-low rounded-xl p-md text-center">
+💊 Medicines: ${medicines.length}
+</div>
+
+<div class="bg-surface-container-low rounded-xl p-md text-center">
+⚠ Risk Alerts: 1
+</div>
+
+<div class="bg-surface-container-low rounded-xl p-md text-center">
+🏥 Health Score: 72
+</div>
+
+<div class="bg-surface-container-low rounded-xl p-md text-center">
+👨‍⚕ Specialist: GP
+</div>
+
+</div>
+`;
         medicines.forEach(med => {
             html += '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">' +
                 '<h5 class="font-headline-md text-primary">' + med.name + '</h5>' +
@@ -694,7 +714,6 @@
 </div>
 
 <div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 mt-4">
-<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 mt-4">
     <h4 class="text-headline-md text-primary">
         👨‍⚕ Recommended Specialist
     </h4>
@@ -710,7 +729,6 @@
     >
         Find Nearby Doctor
     </a>
-</div>
 </div>
 
 <div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 mt-4">
