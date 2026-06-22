@@ -705,24 +705,31 @@ ${med.purpose}
 <p class="font-semibold">${med.dose || '—'}</p>
 </div>
 
-'<div class="bg-surface-container rounded-lg p-sm text-center">' +
-'<p class="text-caption text-on-surface-variant uppercase">Timing</p>' +
+{/* filepath: active file */}
+<div className="bg-surface-container rounded-lg p-sm text-center">
+  <p className="text-caption text-on-surface-variant uppercase">Timing</p>
 
-'<p class="text-body-md font-semibold text-on-surface mt-xs">' +
-
-(
-med.timing === "1-1-1"
-? "<div>🌅 Morning</div>
-<div>☀️ Afternoon</div>
-<div>🌙 Night</div>"
-: med.timing === "1-0-1"
-? "🌅 Morning<br>🌙 Night"
-: med.timing === "0-0-1"
-? "🌙 Night"
-: med.timing === "1-0-0"
-? "🌅 Morning"
-: (med.timing || "—")
-)
+  <div className="text-body-md font-semibold text-on-surface mt-xs">
+    {med.timing === "1-1-1" ? (
+      <>
+        <div>🌅 Morning</div>
+        <div>☀️ Afternoon</div>
+        <div>🌙 Night</div>
+      </>
+    ) : med.timing === "1-0-1" ? (
+      <>
+        <div>🌅 Morning</div>
+        <div>🌙 Night</div>
+      </>
+    ) : med.timing === "0-0-1" ? (
+      <div>🌙 Night</div>
+    ) : med.timing === "1-0-0" ? (
+      <div>🌅 Morning</div>
+    ) : (
+      <span>{med.timing || "—"}</span>
+    )}
+  </div>
+</div>
 
 +
 
