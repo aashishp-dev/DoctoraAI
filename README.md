@@ -4,8 +4,6 @@
 
 DoctoraAI is an advanced healthcare intelligence platform that combines Multi-Agent AI, OCR-powered document understanding, and medical decision support to help users better understand symptoms, lab reports, and prescriptions.
 
-Built for the INDIA.RUNS Redrob x H2S Hackathon by Team Event Horizon.
-
 ---
 
 ## 🚀 Live Demo
