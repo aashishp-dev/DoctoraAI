@@ -799,8 +799,7 @@ try {
     return;
 }
 
-        const lines = data.analysis.split("\n");
-
+const lines = (data.analysis || "").split("\n");
         let html = "";
 
         for(let i = 0; i < lines.length; i++) {
