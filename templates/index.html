@@ -728,21 +728,14 @@ ${med.purpose}
 
         : (med.timing || "—")
     }
-
     </p>
 </div>
-
-+
-
-'</p></div>'
-
+</p></div>
 <div class="bg-surface-container rounded-lg p-sm text-center">
 <p class="text-caption">DURATION</p>
 <p class="font-semibold">${med.duration || '—'}</p>
 </div>
-
 </div>
-
 ${med.warning ? `
 <div style="
 margin-top:15px;
@@ -757,11 +750,53 @@ color:#ffb4ab;
 ` : ''}
 
 <div class="flex items-center gap-sm flex-wrap mt-sm">
-<a href="https://www.1mg.com/search/all?name=${encodeURIComponent(med.name)}" target="_blank">1mg</a>
-<a href="https://pharmeasy.in/search/all?name=${encodeURIComponent(med.name)}" target="_blank">PharmEasy</a>
-<a href="https://www.apollopharmacy.in/search-medicines/${encodeURIComponent(med.name)}" target="_blank">Apollo</a>
-</div>
 
+<a
+href="https://www.1mg.com/search/all?name=${encodeURIComponent(med.name)}"
+target="_blank"
+style="
+padding:8px 14px;
+background:#2563eb;
+color:white;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+"
+>
+🛒 1mg
+</a>
+
+<a
+href="https://pharmeasy.in/search/all?name=${encodeURIComponent(med.name)}"
+target="_blank"
+style="
+padding:8px 14px;
+background:#16a34a;
+color:white;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+"
+>
+🛒 PharmEasy
+</a>
+
+<a
+href="https://www.apollopharmacy.in/search-medicines/${encodeURIComponent(med.name)}"
+target="_blank"
+style="
+padding:8px 14px;
+background:#ea580c;
+color:white;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+"
+>
+🛒 Apollo
+</a>
+
+</div>
 </div>
 `;
 
