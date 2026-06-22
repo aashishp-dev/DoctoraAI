@@ -2,82 +2,145 @@
 
 ### AI-Powered Multi-Agent Healthcare Assistant
 
-DoctoraAI is an intelligent healthcare platform that leverages multiple specialized AI agents to analyze symptoms, validate findings, assess risk levels, recommend specialists, and provide research-backed medical insights.
+DoctoraAI is an advanced healthcare intelligence platform that combines Multi-Agent AI, OCR-powered document understanding, and medical decision support to help users better understand symptoms, lab reports, and prescriptions.
 
-Built for the **INDIA.RUNS Redrob x H2S Hackathon**.
-
-<p align="center">
-  <a href="https://doctora-ai-kappa.vercel.app/"><strong> Link🔗</strong></a>•
-  <a href="#how-it-works"><strong>How It Works</strong></a> •
-  <a href="#tech-stack"><strong>Tech Stack</strong></a> •
-  <a href="#-getting-started"><strong>Getting Started</strong></a>
-</p>
+Built for the INDIA.RUNS Redrob x H2S Hackathon by Team Event Horizon.
 
 ---
 
-## 🚀 Problem Statement
+## 🚀 Live Demo
 
-Millions of people rely on generic AI chatbots for medical guidance. Traditional systems provide a single response with limited validation, increasing the risk of misinformation.
-
-DoctoraAI solves this by introducing a **multi-agent medical intelligence system** where multiple AI specialists independently analyze symptoms before a validator agent synthesizes the final response.
+https://doctora-ai-kappa.vercel.app/
 
 ---
 
-# 🧠 How DoctoraAI Works
+## 🩺 Problem Statement
 
-```text
-User Symptoms
-      │
-      ▼
-┌─────────────────────┐
-│ Diagnosis Agent     │
-└──────────┬──────────┘
-           │
-┌──────────▼──────────┐
-│ Treatment Agent     │
-└──────────┬──────────┘
-           │
-┌──────────▼──────────┐
-│ Research Agent      │
-└──────────┬──────────┘
-           │
-┌──────────▼──────────┐
-│ Validator Agent     │
-└──────────┬──────────┘
-           │
-           ▼
+Millions of people rely on generic AI chatbots for medical guidance. Traditional systems provide a single response with limited validation and little understanding of medical documents.
+
+DoctoraAI introduces a Multi-Agent Healthcare Intelligence System where specialized AI agents collaborate to analyze symptoms, interpret medical reports, decode prescriptions, and provide structured healthcare insights.
+
+---
+
+## 🧠 Core Modules
+
+### 1️⃣ Symptom Intelligence Engine
+
+Users can enter symptoms through text or voice.
+
+AI Agents:
+
+* Diagnosis Agent
+* Treatment Agent
+* Research Agent
+* Validator Agent
+
+Output:
+
+* Possible conditions
+* Risk assessment
+* Recommended actions
+* Specialist recommendation
+* Medical research references
+
+---
+
+### 2️⃣ Lab Report Intelligence
+
+Upload:
+
+* PDF Reports
+* PNG Images
+* JPG Images
+
+Capabilities:
+
+* OCR extraction
+* Report summarization
+* Abnormal value detection
+* Health concern identification
+* Specialist recommendation
+
+---
+
+### 3️⃣ Prescription Intelligence
+
+Upload prescriptions and receive:
+
+* Medicine identification
+* Purpose of medicine
+* Dosage extraction
+* Timing interpretation
+* Duration detection
+* Side-effect warnings
+* Drug interaction awareness
+* AI Health Score
+* Recovery timeline
+* Downloadable report
+
+---
+
+## 🔄 Multi-Agent Architecture
+
+User Query
+
+↓
+
+Diagnosis Agent
+
+↓
+
+Treatment Agent
+
+↓
+
+Research Agent
+
+↓
+
+Validator Agent
+
+↓
+
 Final Verified Response
-```
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-### 🩺 Multi-Agent Medical Analysis
+### 🧠 Multi-Agent Medical Reasoning
 
-Multiple AI agents independently analyze the user's symptoms to improve reliability.
+Independent AI agents analyze symptoms before validation.
 
 ### 📊 Dynamic Risk Assessment
-
-The Validator Agent assigns:
 
 * Low Risk
 * Moderate Risk
 * High Risk
 
-based on symptom severity and duration.
+### 📚 Research-Based Insights
 
-### 📚 Medical Research Integration
-
-Provides relevant PubMed research references and summaries related to the user's symptoms.
+Relevant PubMed references generated dynamically.
 
 ### 🎤 Voice Symptom Input
 
-Users can describe symptoms through speech using browser voice recognition.
+Browser speech recognition support.
 
-### 👨‍⚕️ Recommended Specialist
+### 🩺 Lab Report Understanding
 
-Automatically recommends the most suitable medical specialist:
+AI-assisted report interpretation.
+
+### 💊 Prescription Intelligence
+
+Medicine understanding and recovery planning.
+
+### ⚠ Drug Interaction Awareness
+
+Flags potential medication concerns.
+
+### 👨‍⚕ Specialist Recommendation
+
+Suggests:
 
 * Neurologist
 * Cardiologist
@@ -90,108 +153,110 @@ Automatically recommends the most suitable medical specialist:
 
 ### 📍 Nearby Doctor Finder
 
-One-click Google Maps integration to locate nearby specialists instantly.
+Google Maps integration for specialist discovery.
 
-### ⚡ Modern Interactive UI
+### 📄 Downloadable Medical Report
 
-* Animated startup sequence
-* Floating medical elements
-* Symptom scanner animation
-* Medical dashboard design
-* Fully responsive interface
+Generate printable prescription summaries.
 
 ---
 
-# 🛠 Tech Stack
+## 🛠 Tech Stack
 
-## Frontend
+### Frontend
 
 * HTML5
 * Tailwind CSS
 * Vanilla JavaScript
 
-## Backend
+### Backend
 
 * Python
 * Flask
 
-## AI Layer
+### AI Layer
 
 * Groq API
 * Llama 3.3 70B Versatile
 
-## Research Sources
+### OCR & Document Processing
+
+* PyMuPDF
+* Tesseract OCR
+* Pillow
+
+### Research Sources
 
 * PubMed
 
-## Deployment
+### Deployment
 
 * Vercel
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
-```text
 DoctoraAI
-│
+
 ├── app.py
+
 ├── agents.py
+
 ├── requirements.txt
+
 ├── vercel.json
+
 │
+
 └── templates
-    └── index.html
-```
+
+  └── index.html
 
 ---
 
-# 🔄 Multi-Agent Architecture
-
-| Agent           | Responsibility                                        |
-| --------------- | ----------------------------------------------------- |
-| Diagnosis Agent | Identifies possible conditions                        |
-| Treatment Agent | Suggests treatment approaches                         |
-| Research Agent  | Retrieves research-backed insights                    |
-| Validator Agent | Cross-checks all outputs and generates final response |
-
----
-
-# 🎯 Key Innovations
+## 🎯 Key Innovations
 
 ✅ Multi-Agent Reasoning
 
-✅ Cross-Agent Validation
+✅ AI Validation Layer
 
-✅ Research-Based Insights
+✅ Medical Research Integration
+
+✅ OCR-Powered Document Understanding
+
+✅ Prescription Intelligence
+
+✅ Health Score Generation
+
+✅ Recovery Timeline Prediction
 
 ✅ Specialist Recommendation
 
-✅ Google Maps Doctor Discovery
+✅ Voice-Based Symptom Input
 
-✅ Voice-Based Symptom Entry
-
-✅ Risk Classification System
+✅ Downloadable Medical Reports
 
 ---
 
-# ⚠ Disclaimer
+## ⚠ Disclaimer
 
-DoctoraAI is designed for informational and educational purposes only.
+DoctoraAI is intended for informational and educational purposes only.
 
-It is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a licensed healthcare professional regarding medical concerns.
+It does not provide medical diagnoses and should not replace consultation with licensed healthcare professionals.
+
+Always seek professional medical advice for healthcare decisions.
 
 ---
 
-# 👨‍💻 Team
-
-### Event Horizon
+## 👨‍💻 Team Event Horizon
 
 GL Bajaj Institute of Technology and Management
 
-Built with AI, Healthcare, and Accessibility in mind.
+Built with AI, Healthcare, Accessibility, and Human-Centered Design in mind.
 
+---
 
 ## 📄 License
 
-This project was built for hackathon submission purposes.
+Built for hackathon submission and educational purposes.
