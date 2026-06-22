@@ -1085,18 +1085,20 @@ Recovery expected if medicines are taken correctly.
 
 </div>
 `;
+
+const analysisText = data.analysis || "";
+
 let score = 72;
 let risk = "Moderate Risk";
-
-if(data.analysis.includes("Paracetamol")){
+if (analysisText.includes("Paracetamol")) {
     score = 60;
 }
 
-if(data.analysis.includes("Amoxicillin")){
+if (analysisText.includes("Amoxicillin")) {
     score = 75;
 }
 
-if(data.analysis.includes("Emergency")){
+if (analysisText.includes("Emergency")) {
     score = 90;
     risk = "High Risk";
 }
