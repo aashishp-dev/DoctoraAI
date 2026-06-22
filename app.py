@@ -132,46 +132,41 @@ def upload_prescription():
             "error": "Unsupported file type"
         }), 400
 
-    analysis = ask_agent(
+    try:
+
+        analysis = ask_agent(
 """
 You are a prescription analyzer.
 
+Extract all medicines from the prescription.
+
 Return ONLY in this format:
 
-MEDICINE: [name]
-PURPOSE: [purpose]
-DOSE: [dose]
-TIMING: [timing]
-DURATION: [duration]
-WARNING: [important warning]
-
-Example:
-
-MEDICINE: Amoxicillin
-PURPOSE: Antibiotic
-DOSE: 500mg
-TIMING: 1-1-1 after food
-DURATION: 5 days
-WARNING: Complete full course. Avoid skipping doses.
-
-MEDICINE: Levocetirizine
-PURPOSE: Allergy Relief
-DOSE: 5mg
-TIMING: At night
-DURATION: 5 days
-WARNING: May cause drowsiness.
-
-Return only this format.
+MEDICINE:
+PURPOSE:
+DOSE:
+TIMING:
+DURATION:
+WARNING:
 """,
-text
-)
+            text
+        )
 
+        return jsonify({
+            "analysis": analysis
+        })
 
+    except Exception as e:
 
-    return jsonify({
-        "analysis": analysis
-    })
+        return jsonify({
+            "error": str(e)
+        }), 500
 
+    except Exception as e:
+
+     return jsonify({
+        "error": str(e)
+    }), 500
 
 if __name__ == "__main__":
     app.run(
