@@ -178,7 +178,44 @@ def get_specialist(query):
             return specialist
 
     return "General Physician"
+def parse_lab_analysis(text):
 
+    result = {
+        "summary": "",
+        "abnormal_count": 0,
+        "values": [],
+        "concerns": "",
+        "specialist": "General Physician",
+        "urgency": "Low"
+    }
+
+    try:
+
+        lines = text.split("\n")
+
+        for line in lines:
+
+            if line.startswith("SUMMARY:"):
+                result["summary"] = line.replace("SUMMARY:", "").strip()
+
+            elif line.startswith("ABNORMAL_COUNT:"):
+                result["abnormal_count"] = int(
+                    line.replace("ABNORMAL_COUNT:", "").strip()
+                )
+
+            elif line.startswith("CONCERNS:"):
+                result["concerns"] = line.replace("CONCERNS:", "").strip()
+
+            elif line.startswith("SPECIALIST:"):
+                result["specialist"] = line.replace("SPECIALIST:", "").strip()
+
+            elif line.startswith("URGENCY:"):
+                result["urgency"] = line.replace("URGENCY:", "").strip()
+
+    except Exception as e:
+        print(e)
+
+    return result
 
 if __name__ == "__main__":
     result = run_doctoraai(
