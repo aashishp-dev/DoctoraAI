@@ -786,7 +786,18 @@ font-size:20px;
             body: formData
         });
 
-        const data = await response.json();
+        const responseText = await response.text();
+
+console.log("SERVER RESPONSE:");
+console.log(responseText);
+
+try {
+    const data = JSON.parse(responseText);
+} catch (e) {
+    document.getElementById("prescription-result").innerHTML =
+        "<pre>" + responseText + "</pre>";
+    return;
+}
 
         const lines = data.analysis.split("\n");
 
