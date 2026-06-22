@@ -1163,13 +1163,16 @@ font-weight:bold;
 
 </div>
 `;
-    } catch(error) {
+    } 
+    catch(error) {
 
-        console.error(error);
+    console.error("FULL ERROR:", error);
 
-        document.getElementById("prescription-result").innerHTML =
-            "❌ Failed to analyze prescription.";
-    }
+    document.getElementById(
+        "prescription-result"
+    ).innerHTML =
+        "❌ " + error;
+}
 }
 function showPlanner(medicine,timing,dose){
 

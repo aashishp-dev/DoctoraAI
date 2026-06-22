@@ -4,17 +4,29 @@ from dotenv import load_dotenv
 import time
 
 load_dotenv()
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+api_key = os.getenv("GROQ_API_KEY")
+
+print("GROQ KEY FOUND:", api_key is not None)
+
+client = Groq(api_key=api_key)
+
 
 def ask_agent(system_prompt, user_query):
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_query}
-        ]
-    )
-    return response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_query}
+            ]
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        print("GROQ ERROR:", str(e))
+        raise
+
+
 def parse_research(research_text):
     papers = []
     for i in range(1, 4):
@@ -29,9 +41,9 @@ def parse_research(research_text):
                 "authors": authors,
                 "source": source,
                 "url": url,
-                "summary": summary
+                "summary": summary,
             })
-        except:
+        except Exception:
             pass
     return papers
 

@@ -103,13 +103,16 @@ Keep it short and clear.
 @app.route("/upload-prescription", methods=["POST"])
 def upload_prescription():
 
+    print("🚀 Prescription route started")
+
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
 
     file = request.files["file"]
 
-    text = ""
+    print("📄 File received:", file.filename)
 
+    text = ""
     if file.filename.endswith(".pdf"):
 
         pdf = fitz.open(
@@ -126,6 +129,8 @@ def upload_prescription():
 
         image = Image.open(file)
         text = pytesseract.image_to_string(image)
+        print("📋 OCR Text:")
+        print(text)
 
     else:
         return jsonify({
@@ -133,7 +138,7 @@ def upload_prescription():
         }), 400
 
     try:
-
+        print("🤖 Calling Groq...")
         analysis = ask_agent(
 """
 You are a prescription analyzer.
@@ -151,7 +156,8 @@ WARNING:
 """,
             text
         )
-
+        print("✅ AI Response:")
+        print(analysis)
         return jsonify({
             "analysis": analysis
         })
@@ -174,10 +180,5 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=5001
     )
-if __name__ == "__main__":
-    app.run(
-        debug=True,
-        host="0.0.0.0",
-        port=5001
-    )
+
     
