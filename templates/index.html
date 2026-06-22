@@ -686,22 +686,61 @@
 </div>
 `;
         medicines.forEach(med => {
-            html += '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">' +
-                '<h5 class="font-headline-md text-primary">' + med.name + '</h5>' +
-                (med.purpose ? '<p class="text-body-md text-on-surface-variant"><span class="font-semibold text-on-surface">Purpose:</span> ' + med.purpose + '</p>' : '') +
-                '<div class="grid grid-cols-3 gap-sm mt-sm">' +
-                '<div class="bg-surface-container rounded-lg p-sm text-center"><p class="text-caption text-on-surface-variant uppercase">Dose</p><p class="text-body-md font-semibold text-on-surface mt-xs">' + (med.dose || '—') + '</p></div>' +
-                '<div class="bg-surface-container rounded-lg p-sm text-center"><p class="text-caption text-on-surface-variant uppercase">Timing</p><p class="text-body-md font-semibold text-on-surface mt-xs">' + (med.timing || '—') + '</p></div>' +
-                '<div class="bg-surface-container rounded-lg p-sm text-center"><p class="text-caption text-on-surface-variant uppercase">Duration</p><p class="text-body-md font-semibold text-on-surface mt-xs">' + (med.duration || '—') + '</p></div>' +
-                '</div>' +
-                (med.warning ? '<div class="flex items-start gap-xs mt-sm"><span class="material-symbols-outlined text-[16px]" style="color:#ffb4ab">warning</span><p class="text-caption" style="color:#ffb4ab">' + med.warning + '</p></div>' : '') +
-                '<div class="flex items-center gap-sm flex-wrap mt-sm">' +
-                '<a href="https://www.1mg.com/search/all?name=' + encodeURIComponent(med.name) + '" target="_blank" class="text-caption text-primary hover:underline flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">open_in_new</span>1mg</a>' +
-                '<a href="https://pharmeasy.in/search/all?name=' + encodeURIComponent(med.name) + '" target="_blank" class="text-caption text-primary hover:underline flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">open_in_new</span>PharmEasy</a>' +
-                '<a href="https://www.apollopharmacy.in/search-medicines/' + encodeURIComponent(med.name) + '" target="_blank" class="text-caption text-primary hover:underline flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">open_in_new</span>Apollo</a>' +
-                '</div>' +
-                '</div>';
-        });
+
+html += `
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">
+
+<h5 class="font-headline-md text-primary">${med.name}</h5>
+
+${med.purpose ? `
+<p class="text-body-md text-on-surface-variant">
+<span class="font-semibold text-on-surface">Purpose:</span>
+${med.purpose}
+</p>` : ''}
+
+<div class="grid grid-cols-3 gap-sm mt-sm">
+
+<div class="bg-surface-container rounded-lg p-sm text-center">
+<p class="text-caption">DOSE</p>
+<p class="font-semibold">${med.dose || '—'}</p>
+</div>
+
+<div class="bg-surface-container rounded-lg p-sm text-center">
+<p class="text-caption">TIMING</p>
+<p class="font-semibold">${med.timing || '—'}</p>
+</div>
+
+<div class="bg-surface-container rounded-lg p-sm text-center">
+<p class="text-caption">DURATION</p>
+<p class="font-semibold">${med.duration || '—'}</p>
+</div>
+
+</div>
+
+${med.warning ? `
+<div style="
+margin-top:15px;
+padding:12px;
+background:rgba(239,68,68,0.10);
+border:1px solid rgba(239,68,68,0.25);
+border-radius:10px;
+color:#ffb4ab;
+">
+⚠ Possible Side Effects: ${med.warning}
+</div>
+` : ''}
+
+<div class="flex items-center gap-sm flex-wrap mt-sm">
+<a href="https://www.1mg.com/search/all?name=${encodeURIComponent(med.name)}" target="_blank">1mg</a>
+<a href="https://pharmeasy.in/search/all?name=${encodeURIComponent(med.name)}" target="_blank">PharmEasy</a>
+<a href="https://www.apollopharmacy.in/search-medicines/${encodeURIComponent(med.name)}" target="_blank">Apollo</a>
+</div>
+
+</div>
+`;
+
+});
+
 
         html += `
 <p class="text-caption text-on-surface-variant">
@@ -794,7 +833,7 @@ class="mt-4 px-4 py-2 rounded-lg bg-green-500 text-black font-bold"
 `;
 
 return html;
-    }
+    
 </script>
 
 <script>
