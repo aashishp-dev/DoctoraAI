@@ -47,24 +47,17 @@
         from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    .agent-active {
-        animation: fadeSlideIn 0.4s ease forwards;
-    }
+    .agent-active { animation: fadeSlideIn 0.4s ease forwards; }
     @keyframes pulse-glow {
         0%, 100% { opacity: 0.5; transform: scale(1); }
         50% { opacity: 1; transform: scale(1.2); }
     }
-    .glow-dot {
-        animation: pulse-glow 2s infinite ease-in-out;
-    }
+    .glow-dot { animation: pulse-glow 2s infinite ease-in-out; }
     @keyframes spin {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
     }
-    .animate-spin {
-        animation: spin 1s linear infinite;
-        display: inline-block;
-    }
+    .animate-spin { animation: spin 1s linear infinite; display: inline-block; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
@@ -85,80 +78,32 @@
       theme: {
         extend: {
           "colors": {
-                  "outline-variant": "#424754",
-                  "tertiary-fixed-dim": "#4edea3",
-                  "primary-fixed": "#d8e2ff",
-                  "surface-container-high": "#272a31",
-                  "on-secondary-fixed": "#0d1c2d",
-                  "secondary-fixed-dim": "#b9c8de",
-                  "tertiary-fixed": "#6ffbbe",
-                  "inverse-on-surface": "#2e3038",
-                  "secondary": "#b9c8de",
-                  "on-tertiary-fixed": "#002113",
-                  "on-tertiary-container": "#00311f",
-                  "background": "#10131a",
-                  "primary-fixed-dim": "#adc6ff",
-                  "primary": "#adc6ff",
-                  "surface-bright": "#363941",
-                  "on-primary-fixed": "#001a42",
-                  "on-primary-container": "#00285d",
-                  "surface-container-low": "#191b23",
-                  "primary-container": "#4d8eff",
-                  "outline": "#8c909f",
-                  "inverse-primary": "#005ac2",
-                  "on-tertiary-fixed-variant": "#005236",
-                  "on-surface": "#e1e2ec",
-                  "inverse-surface": "#e1e2ec",
-                  "error": "#ffb4ab",
-                  "surface-container-lowest": "#0b0e15",
-                  "on-surface-variant": "#c2c6d6",
-                  "on-secondary": "#233143",
-                  "on-primary": "#002e6a",
-                  "surface-container": "#1d2027",
-                  "on-secondary-container": "#a7b6cc",
-                  "on-secondary-fixed-variant": "#39485a",
-                  "on-error": "#690005",
-                  "tertiary": "#4edea3",
-                  "on-tertiary": "#003824",
-                  "tertiary-container": "#00a572",
-                  "surface-variant": "#32353c",
-                  "on-primary-fixed-variant": "#004395",
-                  "surface": "#10131a",
-                  "on-error-container": "#ffdad6",
-                  "secondary-fixed": "#d4e4fa",
-                  "on-background": "#e1e2ec",
-                  "secondary-container": "#39485a",
-                  "error-container": "#93000a",
-                  "surface-dim": "#10131a",
-                  "surface-container-highest": "#32353c",
-                  "surface-tint": "#adc6ff"
+                  "outline-variant": "#424754","tertiary-fixed-dim": "#4edea3","primary-fixed": "#d8e2ff",
+                  "surface-container-high": "#272a31","on-secondary-fixed": "#0d1c2d","secondary-fixed-dim": "#b9c8de",
+                  "tertiary-fixed": "#6ffbbe","inverse-on-surface": "#2e3038","secondary": "#b9c8de",
+                  "on-tertiary-fixed": "#002113","on-tertiary-container": "#00311f","background": "#10131a",
+                  "primary-fixed-dim": "#adc6ff","primary": "#adc6ff","surface-bright": "#363941",
+                  "on-primary-fixed": "#001a42","on-primary-container": "#00285d","surface-container-low": "#191b23",
+                  "primary-container": "#4d8eff","outline": "#8c909f","inverse-primary": "#005ac2",
+                  "on-tertiary-fixed-variant": "#005236","on-surface": "#e1e2ec","inverse-surface": "#e1e2ec",
+                  "error": "#ffb4ab","surface-container-lowest": "#0b0e15","on-surface-variant": "#c2c6d6",
+                  "on-secondary": "#233143","on-primary": "#002e6a","surface-container": "#1d2027",
+                  "on-secondary-container": "#a7b6cc","on-secondary-fixed-variant": "#39485a","on-error": "#690005",
+                  "tertiary": "#4edea3","on-tertiary": "#003824","tertiary-container": "#00a572",
+                  "surface-variant": "#32353c","on-primary-fixed-variant": "#004395","surface": "#10131a",
+                  "on-error-container": "#ffdad6","secondary-fixed": "#d4e4fa","on-background": "#e1e2ec",
+                  "secondary-container": "#39485a","error-container": "#93000a","surface-dim": "#10131a",
+                  "surface-container-highest": "#32353c","surface-tint": "#adc6ff"
           },
-          "borderRadius": {
-                  "DEFAULT": "0.25rem",
-                  "lg": "0.5rem",
-                  "xl": "0.75rem",
-                  "full": "9999px"
-          },
+          "borderRadius": { "DEFAULT": "0.25rem","lg": "0.5rem","xl": "0.75rem","full": "9999px" },
           "spacing": {
-                  "sm": "12px",
-                  "lg": "48px",
-                  "xs": "4px",
-                  "xl": "80px",
-                  "md": "24px",
-                  "gutter": "24px",
-                  "margin-mobile": "16px",
-                  "base": "8px",
-                  "container-max": "1280px"
+                  "sm": "12px","lg": "48px","xs": "4px","xl": "80px","md": "24px","gutter": "24px",
+                  "margin-mobile": "16px","base": "8px","container-max": "1280px"
           },
           "fontFamily": {
-                  "display-lg": ["Inter"],
-                  "headline-lg-mobile": ["Inter"],
-                  "body-lg": ["Inter"],
-                  "headline-md": ["Inter"],
-                  "body-md": ["Inter"],
-                  "label-md": ["Inter"],
-                  "caption": ["Inter"],
-                  "headline-lg": ["Inter"]
+                  "display-lg": ["Inter"],"headline-lg-mobile": ["Inter"],"body-lg": ["Inter"],
+                  "headline-md": ["Inter"],"body-md": ["Inter"],"label-md": ["Inter"],
+                  "caption": ["Inter"],"headline-lg": ["Inter"]
           },
           "fontSize": {
                   "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
@@ -176,22 +121,12 @@
 </script>
 
 <style id="floating-cards-final">
-.float-card{
-    animation: floatGlow 6s ease-in-out infinite;
-    transition: all .3s ease;
-}
-@keyframes floatGlow{
-    0%,100%{
-        transform: translateY(0px);
-        box-shadow: 0 0 0 rgba(78,222,163,0);
-    }
-    50%{
-        transform: translateY(-8px);
-        box-shadow: 0 12px 30px rgba(78,222,163,.15);
-    }
+.float-card { animation: floatGlow 6s ease-in-out infinite; transition: all .3s ease; }
+@keyframes floatGlow {
+    0%,100% { transform: translateY(0px); box-shadow: 0 0 0 rgba(78,222,163,0); }
+    50% { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(78,222,163,.15); }
 }
 </style>
-
 
 <style id="startup-and-medical-effects">
 #startup-screen{position:fixed;inset:0;background:#10131a;display:flex;justify-content:center;align-items:center;z-index:99999;transition:opacity .6s ease;}
@@ -201,58 +136,31 @@
 .loader-fill{height:100%;width:0;background:#4edea3;animation:loadbar 3s forwards}
 @keyframes loadbar{to{width:100%;}}
 @keyframes pulseBoot{50%{transform:scale(1.08);}}
-
-.medical-icons span{
-position:fixed;font-size:8rem;color:rgba(78,222,163,.12);
-pointer-events:none;z-index:-1;
-animation:floatMedical 10s ease-in-out infinite;
-}
+.medical-icons span{position:fixed;font-size:8rem;color:rgba(78,222,163,.12);pointer-events:none;z-index:-1;animation:floatMedical 10s ease-in-out infinite;}
 .medical-icons span:nth-child(1){top:10%;left:5%;}
 .medical-icons span:nth-child(2){top:60%;right:10%;animation-delay:3s;}
 .medical-icons span:nth-child(3){bottom:15%;left:45%;animation-delay:6s;}
-
-@keyframes floatMedical{
-0%,100%{transform:translateY(0);}
-50%{transform:translateY(-20px);}
-}
-
+@keyframes floatMedical{0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);}}
 .scan-box{position:relative;overflow:hidden}
-.scan-box::after{
-content:'';position:absolute;left:0;width:100%;height:3px;
-background:linear-gradient(90deg,transparent,#4edea3,transparent);
-box-shadow:0 0 15px #4edea3;
-animation:scanline 3s linear infinite;
-}
-@keyframes scanline{
-0%{top:0;opacity:0}
-20%,80%{opacity:1}
-100%{top:100%;opacity:0}
-}
+.scan-box::after{content:'';position:absolute;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,#4edea3,transparent);box-shadow:0 0 15px #4edea3;animation:scanline 3s linear infinite;}
+@keyframes scanline{0%{top:0;opacity:0}20%,80%{opacity:1}100%{top:100%;opacity:0}}
 </style>
-
 </head>
+
 <body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+
+<!-- Startup Screen -->
 <div id="startup-screen">
 <div class="startup-box">
 <div class="startup-logo">⚕</div>
 <h1>DoctoraAI</h1>
-<p style="
-color:#9ca3af;
-margin-top:10px;
-">
-AI-Powered Healthcare Assistant 
-</p>
+<p style="color:#9ca3af;margin-top:10px;">AI-Powered Healthcare Assistant</p>
 <p id="boot-text">Initializing Clinical Intelligence</p>
 <div class="loader"><div class="loader-fill"></div></div>
 </div>
 </div>
 
-<div class="medical-icons">
-<span>⚕</span>
-<span>🩺</span>
-<span>✚</span>
-</div>
-
+<div class="medical-icons"><span>⚕</span><span>🩺</span><span>✚</span></div>
 
 <!-- TopAppBar -->
 <header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-xl border-b border-outline-variant/20 flex items-center justify-between px-margin-mobile md:px-gutter h-16">
@@ -278,27 +186,12 @@ AI-Powered Healthcare Assistant
                         <button id="voice-btn" class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
                             <span class="material-symbols-outlined text-[20px]">mic</span> Voice
                         </button>
-                        <input
-    type="file"
-    id="lab-file"
-    accept=".pdf,.jpg,.jpeg,.png"
-    hidden
->
-
-<input
-    type="file"
-    id="lab-file"
-    accept=".pdf,.png,.jpg,.jpeg"
-    hidden
->
-
-<button
-    onclick="document.getElementById('lab-file').click()"
-    class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md"
->
-    <span class="material-symbols-outlined text-[20px]">attachment</span>
-    Attach Labs
-</button>
+                        <!-- SINGLE lab file input -->
+                        <input type="file" id="lab-file" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                        <button id="attach-labs-btn" type="button" class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+                            <span class="material-symbols-outlined text-[20px]">attachment</span>
+                            <span id="attach-labs-label">Attach Labs</span>
+                        </button>
                     </div>
                     <button id="analyze-btn" class="bg-primary hover:bg-primary-container text-on-primary font-label-md px-md py-sm rounded-xl transition-all flex items-center gap-sm active:scale-95 shadow-lg shadow-primary/20">
                         Analyze
@@ -309,7 +202,7 @@ AI-Powered Healthcare Assistant
         </div>
     </section>
 
-    <!-- Agent Status Section -->
+    <!-- Agent Status -->
     <section id="agent-status" class="hidden space-y-md max-w-3xl float-card">
         <div class="glass-panel rounded-xl p-md space-y-sm">
             <p class="text-primary font-label-md uppercase tracking-widest">Consulting Agents</p>
@@ -330,7 +223,7 @@ AI-Powered Healthcare Assistant
         </div>
     </section>
 
-    <!-- Final Results Section -->
+    <!-- Final Results -->
     <section id="final-section" class="space-y-md">
         <div class="flex items-center gap-sm">
             <span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">analytics</span>
@@ -343,10 +236,8 @@ AI-Powered Healthcare Assistant
                         <div class="h-1.5 w-1.5 bg-primary rounded-full"></div>
                         <h4 class="text-primary font-label-md uppercase">Synthetic Insights</h4>
                     </div>
-                    <div class="space-y-sm text-on-surface-variant">
-                        <div id="final-response-text" class="text-body-lg text-on-surface">
-                            Enter your symptoms above and click Analyze to get started.
-                        </div>
+                    <div id="final-response-text" class="text-body-lg text-on-surface">
+                        Enter your symptoms above and click Analyze to get started.
                     </div>
                 </div>
                 <div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">
@@ -360,12 +251,10 @@ AI-Powered Healthcare Assistant
                     </div>
                     <p class="text-caption text-on-surface-variant">Risk factor analysis based on reported duration and frequency.</p>
                 </div>
-
                 <div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">
                     <h4 class="font-label-md text-on-surface-variant uppercase">Recommended Specialist</h4>
                     <div id="specialist-name" class="text-headline-md text-primary">--</div>
-                    <a id="maps-link" target="_blank"
-                       class="text-primary hover:underline flex items-center gap-xs">
+                    <a id="maps-link" target="_blank" class="text-primary hover:underline flex items-center gap-xs">
                         <span class="material-symbols-outlined text-[16px]">location_on</span>
                         Find Nearby Doctor
                     </a>
@@ -374,81 +263,60 @@ AI-Powered Healthcare Assistant
         </div>
     </section>
 
-    <!-- Professional Research Section -->
-<section class="space-y-md mt-lg">
+    <!-- Research Papers -->
+    <section class="space-y-md mt-lg">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary">description</span>
+            <h3 class="font-headline-md text-on-surface">Research Papers</h3>
+        </div>
+        <div id="research-container" class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10">
+            Research papers will appear here after analysis.
+        </div>
+    </section>
 
-    <div class="flex items-center gap-sm">
-        <span class="material-symbols-outlined text-primary">
-            description
-        </span>
-        <h3 class="font-headline-md text-on-surface">
-            Research Papers
-        </h3>
-    </div>
+    <!-- Lab Report Analysis -->
+    <section id="lab-report-section" class="space-y-md mt-lg">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary">biotech</span>
+            <h3 class="font-headline-md text-on-surface">Lab Report Analysis</h3>
+        </div>
+        <div id="lab-result">
+            <p class="text-caption text-on-surface-variant bg-surface-container-low rounded-xl p-md border border-outline-variant/10">
+                Upload a lab report to analyze.
+            </p>
+        </div>
+    </section>
 
-    <div
-        id="research-container"
-        class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10"
-    >
-        Research papers will appear here after analysis.
-    </div>
+    <!-- Prescription Intelligence -->
+    <section class="space-y-md mt-lg">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary">medication</span>
+            <h3 class="font-headline-md text-on-surface">Prescription Intelligence</h3>
+        </div>
+        <div class="glass-panel rounded-[2rem] p-md space-y-sm">
+            <p class="text-on-surface-variant text-body-md">Upload a prescription to extract medicines, dosage, timing, and warnings.</p>
+            <div class="flex items-center gap-sm">
+                <!-- SINGLE prescription file input -->
+                <input type="file" id="prescription-file" accept=".pdf,.jpg,.jpeg,.png" hidden>
+                <button id="attach-prescription-btn" type="button" class="flex items-center gap-xs text-on-surface-variant hover:text-primary transition-colors font-label-md">
+                    <span class="material-symbols-outlined text-[20px]">upload_file</span>
+                    <span id="attach-prescription-label">Upload Prescription</span>
+                </button>
+                <button id="analyze-prescription-btn" class="bg-primary hover:bg-primary-container text-on-primary font-label-md px-md py-sm rounded-xl transition-all flex items-center gap-sm active:scale-95 shadow-lg shadow-primary/20">
+                    Analyze
+                    <span class="material-symbols-outlined text-[18px]">medication</span>
+                </button>
+            </div>
+        </div>
+        <div id="prescription-result">
+            <p class="text-caption text-on-surface-variant bg-surface-container-low rounded-xl p-md border border-outline-variant/10">
+                Upload a prescription to get started.
+            </p>
+        </div>
+    </section>
 
-</section>
-
-<!-- Lab Report Analysis -->
-<section class="space-y-md mt-lg">
-    <div class="flex items-center gap-sm">
-        <span class="material-symbols-outlined text-primary">
-            biotech
-        </span>
-        <h3 class="font-headline-md text-on-surface">
-            Lab Report Analysis
-        </h3>
-    </div>
-
-    <div
-        id="lab-result"
-        class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10"
-    >
-        Upload a lab report to analyze.
-    </div>
-</section>
-<section class="space-y-md mt-lg">
-    <h3 class="text-xl font-bold">💊 Prescription Intelligence</h3>
-
-    <input
-        type="file"
-        id="prescription-file"
-        accept=".pdf,.png,.jpg,.jpeg"
-    >
-
-    
-     
-<button
-onclick="analyzePrescription()"
-style="
-padding:14px 28px;
-background:linear-gradient(90deg,#2563eb,#7c3aed);
-color:white;
-border:none;
-border-radius:12px;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-box-shadow:0 0 15px rgba(124,58,237,0.5);
-"
->
-🧠 Analyze Prescription
-</button>
-<div id="stats-dashboard"></div>
-    <div id="prescription-result"></div>
-    <div id="interaction-result"></div>
-    <div id="doctor-result"></div>
-    <div id="recovery-result"></div>
-    <div id="health-score-result"></div>
-</section>
-<!-- Disclaimer -->
-<div class="pt-lg pb-md text-center">
+    <!-- Disclaimer -->
+    <div class="pt-lg pb-md text-center">
         <p class="text-caption text-on-surface-variant/60 max-w-md mx-auto">
             DoctoraAI is for informational purposes only. Not a substitute for professional medical advice.
         </p>
@@ -463,14 +331,14 @@ box-shadow:0 0 15px rgba(124,58,237,0.5);
 </div>
 
 <script>
-    // ── Auto resize textarea ──
+    // Auto resize textarea
     const textarea = document.getElementById('symptom-input');
     textarea.addEventListener('input', function () {
         this.style.height = 'auto';
         this.style.height = this.scrollHeight + 'px';
     });
 
-    // ── Enter key submits ──
+    // Enter submits
     textarea.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -478,85 +346,58 @@ box-shadow:0 0 15px rgba(124,58,237,0.5);
         }
     });
 
-    // ── Voice Input ──
+    // Voice Input
     const voiceBtn = document.getElementById('voice-btn');
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
     if (SpeechRecognition) {
         const recognition = new SpeechRecognition();
         recognition.continuous = true;
         recognition.interimResults = true;
         recognition.lang = 'en-US';
-
-        let isListening = false;
-        let baseText = '';        // text that existed before voice started
-        let finalizedChunks = []; // each finalized result stored ONCE by index
+        let isListening = false, baseText = '', finalizedChunks = [];
 
         voiceBtn.addEventListener('click', () => {
             if (!isListening) {
                 baseText = textarea.value.trim();
                 if (baseText) baseText += ' ';
                 finalizedChunks = [];
-
                 try {
                     recognition.start();
                     isListening = true;
-                    voiceBtn.innerHTML = `
-                        <span class="material-symbols-outlined text-[20px]" 
-                            style="color:#4edea3;animation:pulse-glow 1s infinite;">mic</span> 
-                        Tap to stop`;
-                } catch(e) {
-                    console.error('Could not start recognition:', e);
-                }
+                    voiceBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]" style="color:#4edea3;animation:pulse-glow 1s infinite;">mic</span> Tap to stop';
+                } catch(e) { console.error(e); }
             } else {
                 recognition.stop();
             }
         });
 
         recognition.onresult = (event) => {
-            let interimTranscript = '';
-
+            let interim = '';
             for (let i = 0; i < event.results.length; i++) {
-                const result = event.results[i];
-                if (result.isFinal) {
-                    // Only store this index ONCE — overwrite, never append-on-repeat
-                    finalizedChunks[i] = result[0].transcript;
-                } else {
-                    interimTranscript += result[0].transcript;
-                }
+                if (event.results[i].isFinal) finalizedChunks[i] = event.results[i][0].transcript;
+                else interim += event.results[i][0].transcript;
             }
-
-            const finalText = finalizedChunks.filter(Boolean).join(' ');
-            textarea.value = baseText + finalText + (interimTranscript ? ' ' + interimTranscript : '');
-
+            textarea.value = baseText + finalizedChunks.filter(Boolean).join(' ') + (interim ? ' ' + interim : '');
             textarea.style.height = 'auto';
             textarea.style.height = textarea.scrollHeight + 'px';
         };
 
         recognition.onend = () => {
             isListening = false;
-            voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
-            // Lock in final clean text, trim extra spaces
+            voiceBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">mic</span> Voice';
             textarea.value = textarea.value.replace(/\s+/g, ' ').trim();
         };
 
         recognition.onerror = (event) => {
             isListening = false;
-            voiceBtn.innerHTML = `<span class="material-symbols-outlined text-[20px]">mic</span> Voice`;
-            if (event.error === 'not-allowed') {
-                alert('Microphone blocked. Allow mic access in browser settings and refresh.');
-            } else if (event.error === 'no-speech') {
-                console.log('No speech detected');
-            } else {
-                console.error('Speech error:', event.error);
-            }
+            voiceBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">mic</span> Voice';
+            if (event.error === 'not-allowed') alert('Microphone blocked. Allow mic access in browser settings and refresh.');
         };
-
     } else {
         voiceBtn.style.display = 'none';
     }
 
-    // ── Agent status helpers ──
+    // Agent status helpers
     function resetStatuses() {
         ['status-a', 'status-b', 'status-c', 'status-v'].forEach(id => {
             const el = document.getElementById(id);
@@ -571,7 +412,6 @@ box-shadow:0 0 15px rgba(124,58,237,0.5);
     function setStatus(id, state) {
         const el = document.getElementById(id);
         const icon = el.querySelector('span');
-
         if (state === 'loading') {
             el.classList.remove('text-on-surface-variant', 'text-tertiary');
             el.classList.add('text-primary');
@@ -587,25 +427,19 @@ box-shadow:0 0 15px rgba(124,58,237,0.5);
             icon.textContent = 'check_circle';
         }
     }
-    
-    // ── Main Analyze ──
-    const analyzeBtn = document.getElementById('analyze-btn');
 
+    // Main Analyze
+    const analyzeBtn = document.getElementById('analyze-btn');
     analyzeBtn.addEventListener('click', async () => {
         const query = textarea.value.trim();
-        if (!query) {
-            alert('Please describe your symptoms first!');
-            return;
-        }
+        if (!query) { alert('Please describe your symptoms first!'); return; }
 
         document.getElementById('agent-status').classList.remove('hidden');
         document.getElementById('symptom-panel')?.classList.add('scan-box');
         resetStatuses();
-
         analyzeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Analyzing...';
         analyzeBtn.disabled = true;
 
-        // Animate agent statuses with timing
         setTimeout(() => setStatus('status-a', 'loading'), 100);
         setTimeout(() => setStatus('status-a', 'done'),   2000);
         setTimeout(() => setStatus('status-b', 'loading'), 2000);
@@ -613,63 +447,47 @@ box-shadow:0 0 15px rgba(124,58,237,0.5);
         setTimeout(() => setStatus('status-c', 'loading'), 4000);
         setTimeout(() => setStatus('status-c', 'done'),   6000);
         setTimeout(() => setStatus('status-v', 'loading'), 6000);
-try {
-        
+
+        try {
             const response = await fetch('/analyze', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query })
             });
-
             const data = await response.json();
-console.log("FULL RESPONSE:", data);
-console.log("FINAL:", data.final);
-            if(data.specialist){
+
+            if (data.specialist) {
                 document.getElementById('specialist-name').textContent = data.specialist;
-                document.getElementById('maps-link').href =
-                `https://www.google.com/maps/search/${encodeURIComponent(data.specialist + ' near me')}`;
+                document.getElementById('maps-link').href = 'https://www.google.com/maps/search/' + encodeURIComponent(data.specialist + ' near me');
             }
 
             setStatus('status-v', 'done');
 
-            // Update final response
-            
-console.log("FULL RESPONSE:", data);
-console.log("FINAL:", data.final);
+            document.getElementById('final-response-text').innerHTML =
+                (data.final || "No response received")
+                    .replace(/\n/g, '<br>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-const finalText = data.final || "No response received from AI";
-
-document.getElementById('final-response-text').innerHTML =
-    finalText
-        .replace(/\n/g, '<br>')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            // Update risk level
             const risk = data.risk;
-            document.getElementById('risk-label').textContent        = risk.label;
-            document.getElementById('risk-label').style.color        = risk.color;
-            document.getElementById('risk-bar').style.width          = risk.width;
+            document.getElementById('risk-label').textContent = risk.label;
+            document.getElementById('risk-label').style.color = risk.color;
+            document.getElementById('risk-bar').style.width = risk.width;
             document.getElementById('risk-bar').style.backgroundColor = risk.color;
 
-            // Update research cards
             const researchContainer = document.getElementById('research-container');
             if (data.papers && data.papers.length > 0) {
                 let html = '';
                 data.papers.forEach((paper, i) => {
                     if (i > 0) html += '<div class="border-t border-outline-variant/10 my-md"></div>';
-                    html += `
-                        <div class="flex items-start gap-md">
-                            <span class="material-symbols-outlined text-on-surface-variant mt-xs">description</span>
-                            <div class="space-y-xs">
-                                <h4 class="text-body-md font-semibold text-on-surface">${paper.title}</h4>
-                                <p class="text-caption text-on-surface-variant">${paper.authors}</p>
-                                <p class="text-caption text-on-surface-variant">${paper.summary}</p>
-                                <a class="text-caption text-primary hover:underline flex items-center gap-xs"
-                                   href="${paper.url}" target="_blank" rel="noopener noreferrer">
-                                   <span class="material-symbols-outlined text-[14px]">open_in_new</span>
-                                   Source: ${paper.source}
-                                </a>
-                            </div>
-                        </div>`;
+                    html += '<div class="flex items-start gap-md">' +
+                        '<span class="material-symbols-outlined text-on-surface-variant mt-xs">description</span>' +
+                        '<div class="space-y-xs">' +
+                        '<h4 class="text-body-md font-semibold text-on-surface">' + paper.title + '</h4>' +
+                        '<p class="text-caption text-on-surface-variant">' + paper.authors + '</p>' +
+                        '<p class="text-caption text-on-surface-variant">' + paper.summary + '</p>' +
+                        '<a class="text-caption text-primary hover:underline flex items-center gap-xs" href="' + paper.url + '" target="_blank" rel="noopener noreferrer">' +
+                        '<span class="material-symbols-outlined text-[14px]">open_in_new</span>Source: ' + paper.source + '</a>' +
+                        '</div></div>';
                 });
                 researchContainer.innerHTML = html;
             } else {
@@ -677,577 +495,203 @@ document.getElementById('final-response-text').innerHTML =
             }
 
             document.getElementById('final-section').scrollIntoView({ behavior: 'smooth' });
-
         } catch (error) {
-            console.error("ERROR:", error);
-
-document.getElementById('final-response-text').innerHTML =
-    '<pre style="color:#ffb4ab;white-space:pre-wrap;">' +
-    error +
-    '</pre>';
+            console.error(error);
+            document.getElementById('final-response-text').innerHTML = '<span style="color:#ffb4ab">Something went wrong. Please try again.</span>';
         } finally {
             analyzeBtn.innerHTML = 'Analyze <span class="material-symbols-outlined text-[18px]">auto_awesome</span>';
             document.getElementById('symptom-panel')?.classList.remove('scan-box');
             analyzeBtn.disabled = false;
         }
     });
-    document.getElementById('lab-file').addEventListener('change', function(e) {
-    const file = e.target.files[0];
 
-    if(file){
-        alert("Selected: " + file.name);
-    }
-});
-</script>
+    // Lab Report Upload — single clean handler
+    const labFileInput = document.getElementById('lab-file');
+    const attachLabsBtn = document.getElementById('attach-labs-btn');
+    const attachLabsLabel = document.getElementById('attach-labs-label');
+    const labResult = document.getElementById('lab-result');
 
+    attachLabsBtn.addEventListener('click', () => labFileInput.click());
 
-<script>
-setTimeout(()=>{
- const e=document.getElementById('boot-text');
- if(e)e.textContent='Loading Medical Knowledge Base...';
-},1000);
+    labFileInput.addEventListener('change', async function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
 
-setTimeout(()=>{
- const e=document.getElementById('boot-text');
- if(e)e.textContent='Activating AI Agents...';
-},2000);
+        attachLabsLabel.textContent = 'Analyzing...';
+        attachLabsBtn.disabled = true;
+        labResult.innerHTML = '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 flex items-center gap-sm"><span class="material-symbols-outlined text-primary animate-spin">progress_activity</span><span class="text-body-md text-on-surface-variant">Analyzing ' + file.name + '...</span></div>';
 
-setTimeout(()=>{
- const s=document.getElementById('startup-screen');
- if(s){
-   s.style.opacity='0';
-   setTimeout(()=>s.remove(),700);
- }
-},3200);
-</script>
-<script>
-document
-.getElementById("lab-file")
-.addEventListener("change", async function(e){
+        const formData = new FormData();
+        formData.append('file', file);
 
-    const file = e.target.files[0];
-
-    if(!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    document.getElementById("lab-result").innerHTML =
-        "🔍 Analyzing Lab Report...";
-
-    try {
-
-        const response = await fetch("/upload-lab", {
-            method: "POST",
-            body: formData
-        });
-
-        const data = await response.json();
-
-        document.getElementById("lab-result").innerHTML =
-            data.analysis.replace(/\n/g,"<br>");
-
-    } catch(error) {
-
-        document.getElementById("lab-result").innerHTML =
-            "❌ Failed to analyze report.";
-
-        console.error(error);
-    }
-});
-async function analyzePrescription() {
-
-    const file = document.getElementById("prescription-file").files[0];
-
-    if (!file) {
-        alert("Please upload a prescription.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-
-        document.getElementById(
-    "prescription-result"
-).innerHTML = `
-<div style="
-padding:20px;
-text-align:center;
-font-size:20px;
-">
-🧠 AI is analyzing your prescription...
-</div>
-`;
-
-        const response = await fetch("/upload-prescription", {
-            method: "POST",
-            body: formData
-        });
-
-        const responseText = await response.text();
-let data;
-console.log("SERVER RESPONSE:");
-console.log(responseText);
-
-try {
-    const data = JSON.parse(responseText);
-} catch (e) {
-    document.getElementById("prescription-result").innerHTML =
-        "<pre>" + responseText + "</pre>";
-    return;
-}
-
-const lines = (data.analysis || "").split("\n");
-        let html = "";
-
-        for(let i = 0; i < lines.length; i++) {
-
-            if(lines[i].startsWith("MEDICINE:")) {
-
-                const medicine =
-                    lines[i].replace("MEDICINE:", "").trim();
-
-                       const purpose =
-    lines[i+1]?.replace("PURPOSE:","").trim() || "";
-
-const dose =
-    lines[i+2]?.replace("DOSE:","").trim() || "";
-
-const timing =
-    lines[i+3]?.replace("TIMING:","").trim() || "";
-
-const duration =
-    lines[i+4]?.replace("DURATION:","").trim() || "";
-const warning =
-    lines[i+5]?.replace("WARNING:","").trim() || "";
-                html += `
-                <div style="
-                    border:1px solid #444;
-                    padding:15px;
-                    border-radius:12px;
-                    margin-bottom:10px;
-                ">
-                  <h3>${medicine}</h3>
-
-<p><strong>Dose:</strong> ${dose}</p>
-<p><strong>Timing:</strong> ${timing}</p>
-<p><strong>Duration:</strong> ${duration}</p>
-
-<button
-    onclick="alert('${purpose}')"
-    style="
-        padding:8px 16px;
-        background:#2563eb;
-        color:white;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-        margin-right:10px;
-    "
->
-    Purpose
-</button>
-
-<button
-    onclick="alert('💊 Dose: ${dose}\n⏰ Timing: ${timing}\n📅 Duration: ${duration}')"
-    style="
-        padding:8px 16px;
-        background:#16a34a;
-        color:white;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-        margin-right:10px;
-    "
->
-    Schedule
-</button>
-
-<button
-    onclick="
-    const box=this.parentElement.querySelector('.warning-box');
-    box.style.display=
-    box.style.display==='none'?'block':'none';
-    "
-    style="
-        padding:8px 16px;
-        background:#f59e0b;
-        color:white;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-        margin-right:10px;
-    "
->
-    Warnings
-</button>
-<button
-onclick="showPlanner('${medicine}','${timing}','${dose}')"
-style="
-padding:8px 16px;
-background:#8b5cf6;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-margin-right:10px;
-"
->
-Planner
-</button>
-<button
-    onclick="window.open('https://www.1mg.com/search/all?name=${medicine}','_blank')"
-    style="
-        padding:8px 16px;
-        background:#dc2626;
-        color:white;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-        margin-right:10px;
-    "
->
-    1mg
-</button>
-
-<button
-    onclick="window.open('https://pharmeasy.in/search/all?name=${medicine}','_blank')"
-    style="
-        padding:8px 16px;
-        background:#9333ea;
-        color:white;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-        margin-right:10px;
-    "
->
-    PharmEasy
-</button>
-
-<button
-    onclick="window.open('https://www.apollopharmacy.in/search-medicines/${medicine}','_blank')"
-    style="
-        padding:8px 16px;
-        background:#0891b2;
-        color:white;
-        border:none;
-        border-radius:8px;
-        cursor:pointer;
-    "
->
-    Apollo
-</button>
-<div class="warning-box"
-     style="
-     display:none;
-     margin-top:15px;
-     padding:12px;
-     background:#111827;
-     border:1px solid #444;
-     border-radius:8px;
-     color:#fbbf24;
-">
-⚠ ${warning}
-</div>
-<div id="planner-result"></div>
-</div>
-                `;
-
+        try {
+            const response = await fetch('/upload-lab', { method: 'POST', body: formData });
+            const data = await response.json();
+            if (data.error) {
+                labResult.innerHTML = '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10" style="color:#ffb4ab">' + data.error + '</div>';
+            } else {
+                labResult.innerHTML = renderLabAnalysis(data);
+                document.getElementById('lab-report-section').scrollIntoView({ behavior: 'smooth' });
             }
+        } catch (error) {
+            console.error(error);
+            labResult.innerHTML = '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10" style="color:#ffb4ab">Failed to analyze report. Please try again.</div>';
+        } finally {
+            attachLabsLabel.textContent = 'Attach Labs';
+            attachLabsBtn.disabled = false;
+            labFileInput.value = '';
         }
-document.getElementById("stats-dashboard").innerHTML = `
-<div style="
-display:flex;
-gap:20px;
-margin-bottom:20px;
-flex-wrap:wrap;
-">
+    });
 
-<div style="
-padding:15px;
-background:#111827;
-border-radius:12px;
-border:1px solid #444;
-">
-💊 Medicines: 4
-</div>
+    // Lab Report Card Renderer
+    function renderLabAnalysis(data) {
+        const statusColors = { 'High': '#ffb4ab', 'Low': '#adc6ff', 'Critical': '#ff6b6b' };
+        let valuesHTML = '';
+        (data.values || []).forEach(v => {
+            const color = statusColors[v.status] || '#4edea3';
+            valuesHTML += '<div class="flex items-center justify-between py-sm border-b border-outline-variant/10">' +
+                '<div><p class="text-body-md font-semibold text-on-surface">' + v.name + '</p>' +
+                '<p class="text-caption text-on-surface-variant">Normal range: ' + v.range + '</p></div>' +
+                '<div class="text-right"><span class="text-headline-md font-bold" style="color:' + color + '">' + v.result + '</span>' +
+                '<p class="text-caption" style="color:' + color + '">' + v.status + '</p></div></div>';
+        });
 
-<div style="
-padding:15px;
-background:#111827;
-border-radius:12px;
-border:1px solid #444;
-">
-⚠ Risk Alerts: 1
-</div>
+        const abnormalCount = data.abnormal_count || 0;
+        const badgeBg = abnormalCount > 0 ? 'rgba(255,180,171,0.15)' : 'rgba(78,222,163,0.15)';
+        const badgeColor = abnormalCount > 0 ? '#ffb4ab' : '#4edea3';
+        const labSpecialist = data.specialist || 'General Physician';
+        const labMapsUrl = 'https://www.google.com/maps/search/' + encodeURIComponent(labSpecialist + ' near me');
 
-<div style="
-padding:15px;
-background:#111827;
-border-radius:12px;
-border:1px solid #444;
-">
-🏥 Health Score: 72
-</div>
+        return '<div class="ai-gradient-border p-md md:p-lg space-y-md">' +
+            '<div class="flex items-center justify-between">' +
+            '<h4 class="text-headline-md text-on-surface">Report Summary</h4>' +
+            '<span class="px-sm py-xs rounded-full text-caption font-semibold" style="background:' + badgeBg + ';color:' + badgeColor + '">' + abnormalCount + ' Abnormal ' + (abnormalCount === 1 ? 'Value' : 'Values') + '</span>' +
+            '</div>' +
+            '<p class="text-body-lg text-on-surface">' + (data.summary || '') + '</p>' +
+            ((data.values && data.values.length > 0) ?
+                '<div class="bg-surface-container-low rounded-xl p-md space-y-xs"><h5 class="font-label-md text-on-surface-variant uppercase mb-sm">Flagged Values</h5>' + valuesHTML + '</div>' : '') +
+            '<div class="bg-surface-container-low rounded-xl p-md space-y-xs">' +
+            '<h5 class="font-label-md text-on-surface-variant uppercase">Possible Concerns</h5>' +
+            '<p class="text-body-md text-on-surface-variant">' + (data.concerns || 'No major concerns identified.') + '</p></div>' +
+            '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">' +
+            '<h4 class="font-label-md text-on-surface-variant uppercase">Recommended Specialist</h4>' +
+            '<div class="text-headline-md text-primary">' + labSpecialist + '</div>' +
+            '<a href="' + labMapsUrl + '" target="_blank" class="text-primary hover:underline flex items-center gap-xs">' +
+            '<span class="material-symbols-outlined text-[16px]">location_on</span>Find Nearby Doctor</a>' +
+            '</div></div>';
+    }
 
-</div>
-`;
-        document.getElementById("prescription-result").innerHTML = html;
+    // Prescription Upload
+    const prescriptionFileInput = document.getElementById('prescription-file');
+    const attachPrescriptionBtn = document.getElementById('attach-prescription-btn');
+    const attachPrescriptionLabel = document.getElementById('attach-prescription-label');
+    const analyzePrescriptionBtn = document.getElementById('analyze-prescription-btn');
+    const prescriptionResult = document.getElementById('prescription-result');
+    let prescriptionFileName = '';
 
-document.getElementById("interaction-result").innerHTML = `
-<div style="
-padding:15px;
-margin-top:20px;
-border:1px solid #444;
-border-radius:12px;
-background:#111827;
-">
-<h3>⚠ Drug Interaction Check</h3>
-<p>No major drug interactions detected.</p>
-</div>
-`;
-  const analysisText = data.analysis || "";
+    attachPrescriptionBtn.addEventListener('click', () => prescriptionFileInput.click());
 
-let specialist = "General Physician";
+    prescriptionFileInput.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        prescriptionFileName = file.name;
+        attachPrescriptionLabel.textContent = file.name.length > 20 ? file.name.substring(0, 20) + '...' : file.name;
+        attachPrescriptionLabel.style.color = '#4edea3';
+    });
 
-if (analysisText.includes("Pantoprazole")) {
-    specialist = "Gastroenterologist";
-}
+    analyzePrescriptionBtn.addEventListener('click', async () => {
+        const file = prescriptionFileInput.files[0];
+        if (!file) { alert('Please upload a prescription first.'); return; }
 
-if (analysisText.includes("Levocetirizine")) {
-    specialist = "Allergist";
-}
+        analyzePrescriptionBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Analyzing...';
+        analyzePrescriptionBtn.disabled = true;
+        prescriptionResult.innerHTML = '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 flex items-center gap-sm"><span class="material-symbols-outlined text-primary animate-spin">progress_activity</span><span class="text-body-md text-on-surface-variant">Reading prescription...</span></div>';
 
-if (analysisText.includes("Paracetamol")) {
-    specialist = "General Physician";
-}
+        const formData = new FormData();
+        formData.append('file', file);
 
-document.getElementById("doctor-result").innerHTML = `
-<div style="
-padding:15px;
-margin-top:20px;
-border:1px solid #444;
-border-radius:12px;
-background:#111827;
-">
-<h3>👨‍⚕ Recommended Specialist</h3>
+        try {
+            const response = await fetch('/upload-prescription', { method: 'POST', body: formData });
+            const data = await response.json();
 
-<p>${specialist}</p>
+            if (data.error) {
+                prescriptionResult.innerHTML = '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10" style="color:#ffb4ab">' + data.error + '</div>';
+                return;
+            }
 
-<button
-onclick="window.open(
-'https://www.google.com/maps/search/${specialist}+near+me',
-'_blank'
-)"
-style="
-padding:8px 16px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-"
->
-Find Nearby Doctor
-</button>
+            prescriptionResult.innerHTML = renderPrescription(data.analysis);
 
-</div>
-`;
-document.getElementById("doctor-result").innerHTML = `
-<div style="
-padding:15px;
-margin-top:20px;
-border:1px solid #444;
-border-radius:12px;
-background:#111827;
-">
-<h3>⚠ Drug Interaction Check</h3>
-      <p>No major drug interactions detected.</p>
-    </div>
-  `;
+        } catch (error) {
+            console.error(error);
+            prescriptionResult.innerHTML = '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10" style="color:#ffb4ab">Failed to analyze prescription. Please try again.</div>';
+        } finally {
+            analyzePrescriptionBtn.innerHTML = 'Analyze <span class="material-symbols-outlined text-[18px]">medication</span>';
+            analyzePrescriptionBtn.disabled = false;
+            prescriptionFileInput.value = '';
+            attachPrescriptionLabel.textContent = 'Upload Prescription';
+            attachPrescriptionLabel.style.color = '';
+        }
+    });
+
+    // Prescription Renderer — matches design system
+    function renderPrescription(analysisText) {
+        const lines = (analysisText || '').split('\n');
+        let medicines = [];
+        let current = null;
+
+        lines.forEach(line => {
+            line = line.trim();
+            if (line.startsWith('MEDICINE:')) {
+                if (current) medicines.push(current);
+                current = { name: line.replace('MEDICINE:', '').trim(), purpose: '', dose: '', timing: '', duration: '', warning: '' };
+            } else if (current) {
+                if (line.startsWith('PURPOSE:')) current.purpose = line.replace('PURPOSE:', '').trim();
+                else if (line.startsWith('DOSE:')) current.dose = line.replace('DOSE:', '').trim();
+                else if (line.startsWith('TIMING:')) current.timing = line.replace('TIMING:', '').trim();
+                else if (line.startsWith('DURATION:')) current.duration = line.replace('DURATION:', '').trim();
+                else if (line.startsWith('WARNING:')) current.warning = line.replace('WARNING:', '').trim();
+            }
+        });
+        if (current) medicines.push(current);
+
+        if (medicines.length === 0) {
+            return '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10"><p class="text-on-surface-variant text-body-md">No medicines could be extracted. Try a clearer image.</p></div>';
+        }
+
+        let html = '<div class="ai-gradient-border p-md md:p-lg space-y-md">' +
+            '<div class="flex items-center justify-between">' +
+            '<h4 class="text-headline-md text-on-surface">Prescription Analysis</h4>' +
+            '<span class="px-sm py-xs rounded-full text-caption font-semibold" style="background:rgba(173,198,255,0.15);color:#adc6ff">' + medicines.length + ' ' + (medicines.length === 1 ? 'Medicine' : 'Medicines') + ' Found</span>' +
+            '</div>';
+
+        medicines.forEach(med => {
+            html += '<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/10 space-y-sm">' +
+                '<h5 class="font-headline-md text-primary">' + med.name + '</h5>' +
+                (med.purpose ? '<p class="text-body-md text-on-surface-variant"><span class="font-semibold text-on-surface">Purpose:</span> ' + med.purpose + '</p>' : '') +
+                '<div class="grid grid-cols-3 gap-sm mt-sm">' +
+                '<div class="bg-surface-container rounded-lg p-sm text-center"><p class="text-caption text-on-surface-variant uppercase">Dose</p><p class="text-body-md font-semibold text-on-surface mt-xs">' + (med.dose || '—') + '</p></div>' +
+                '<div class="bg-surface-container rounded-lg p-sm text-center"><p class="text-caption text-on-surface-variant uppercase">Timing</p><p class="text-body-md font-semibold text-on-surface mt-xs">' + (med.timing || '—') + '</p></div>' +
+                '<div class="bg-surface-container rounded-lg p-sm text-center"><p class="text-caption text-on-surface-variant uppercase">Duration</p><p class="text-body-md font-semibold text-on-surface mt-xs">' + (med.duration || '—') + '</p></div>' +
+                '</div>' +
+                (med.warning ? '<div class="flex items-start gap-xs mt-sm"><span class="material-symbols-outlined text-[16px]" style="color:#ffb4ab">warning</span><p class="text-caption" style="color:#ffb4ab">' + med.warning + '</p></div>' : '') +
+                '<div class="flex items-center gap-sm flex-wrap mt-sm">' +
+                '<a href="https://www.1mg.com/search/all?name=' + encodeURIComponent(med.name) + '" target="_blank" class="text-caption text-primary hover:underline flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">open_in_new</span>1mg</a>' +
+                '<a href="https://pharmeasy.in/search/all?name=' + encodeURIComponent(med.name) + '" target="_blank" class="text-caption text-primary hover:underline flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">open_in_new</span>PharmEasy</a>' +
+                '<a href="https://www.apollopharmacy.in/search-medicines/' + encodeURIComponent(med.name) + '" target="_blank" class="text-caption text-primary hover:underline flex items-center gap-xs"><span class="material-symbols-outlined text-[14px]">open_in_new</span>Apollo</a>' +
+                '</div>' +
+                '</div>';
+        });
+
+        html += '<p class="text-caption text-on-surface-variant">⚠️ Always take medicines as directed by your doctor.</p></div>';
+        return html;
+    }
 </script>
-<h3>👨‍⚕ Recommended Specialist</h3>
 
-<p>${specialist}</p>
-
-<button
-onclick="
-window.open(
-'https://www.google.com/maps/search/doctor+near+me',
-'_blank'
-)
-"
-style="
-padding:8px 16px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-"
->
-Find Nearby Doctor
-</button>
-
-</div>
-`;
-document.getElementById("recovery-result").innerHTML = `
-<div style="
-padding:15px;
-margin-top:20px;
-border:1px solid #444;
-border-radius:12px;
-background:#111827;
-">
-
-<h3>🧠 Recovery Timeline</h3>
-
-<p>
-<b>Day 1-2:</b><br>
-Symptoms start improving.
-</p>
-
-<p>
-<b>Day 3-5:</b><br>
-Medicines begin showing full effect.
-</p>
-
-<p>
-<b>Day 5-7:</b><br>
-Recovery expected if medicines are taken correctly.
-</p>
-
-<p style="color:#f59e0b;">
-⚠ Consult a doctor if symptoms worsen.
-</p>
-
-</div>
-`;
-
-const analysisText = data.analysis || "";
-
-let score = 72;
-let risk = "Moderate Risk";
-if (analysisText.includes("Paracetamol")) {
-    score = 60;
-}
-
-if (analysisText.includes("Amoxicillin")) {
-    score = 75;
-}
-
-if (analysisText.includes("Emergency")) {
-    score = 90;
-    risk = "High Risk";
-}
-
-document.getElementById("health-score-result").innerHTML = `
-<div style="
-padding:20px;
-margin-top:20px;
-border:1px solid #444;
-border-radius:12px;
-background:#111827;
-text-align:center;
-">
-
-<h2>🏥 AI Health Score</h2>
-
-<div style="
-font-size:48px;
-font-weight:bold;
-color:#f59e0b;
-margin:15px 0;
-">
-${score}/100
-</div>
-
-<div style="
-width:100%;
-height:20px;
-background:#333;
-border-radius:20px;
-overflow:hidden;
-margin-bottom:15px;
-">
-<div style="
-width:${score}%;
-height:100%;
-background:#f59e0b;
-"></div>
-</div>
-
-<div style="
-padding:10px;
-background:#f59e0b;
-color:black;
-border-radius:8px;
-font-weight:bold;
-">
-⚠ ${risk}
-</div>
-
-<p style="
-margin-top:15px;
-color:#d1d5db;
-">
-Continue medication and monitor symptoms.
-</p>
-
-<button onclick="window.print()" style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;margin-top:15px;font-weight:bold;">
-📄 Download Health Report
-</button>
-
-</div>
-`;
-    } 
-    catch(error) {
-
-    console.error("FULL ERROR:", error);
-
-    document.getElementById(
-        "prescription-result"
-    ).innerHTML =
-        "❌ " + error;
-}
-}
-function showPlanner(medicine,timing,dose){
-
-let plan = "";
-
-if((timing || "").includes("1-1-1")){
-    plan =
-`🌅 Morning: ${medicine} ${dose}
-🍽 Afternoon: ${medicine} ${dose}
-🌙 Night: ${medicine} ${dose}`;
-}
-else if((timing || "").includes("1-0-1")){
-    plan =
-`🌅 Morning: ${medicine} ${dose}
-🌙 Night: ${medicine} ${dose}`;
-}
-else{
-    plan =
-`${medicine} ${dose}
-${timing}`;
-}
-
-document.getElementById("planner-result").innerHTML =
-`
-<div style="
-margin-top:20px;
-padding:15px;
-border:1px solid #444;
-border-radius:12px;
-">
-<h3>📅 Medication Plan</h3>
-<pre>${plan}</pre>
-</div>
-`;
-}
+<script>
+setTimeout(function(){ const e=document.getElementById('boot-text'); if(e)e.textContent='Loading Medical Knowledge Base...'; },1000);
+setTimeout(function(){ const e=document.getElementById('boot-text'); if(e)e.textContent='Activating AI Agents...'; },2000);
+setTimeout(function(){ const s=document.getElementById('startup-screen'); if(s){ s.style.opacity='0'; setTimeout(function(){s.remove();},700); } },3200);
 </script>
+
 </body>
 </html>
