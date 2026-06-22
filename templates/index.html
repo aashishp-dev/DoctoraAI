@@ -635,6 +635,31 @@
     });
 
     // Prescription Renderer — matches design system
+    function formatTiming(timing) {
+
+    if (!timing) return "—";
+
+    if (timing === "SOS")
+        return "🚨 As Needed";
+
+    const parts = timing.split("-");
+
+    if (parts.length !== 3)
+        return timing;
+
+    let result = [];
+
+    if (parseInt(parts[0]) > 0)
+        result.push(`🌅 ${parts[0]} Morning`);
+
+    if (parseInt(parts[1]) > 0)
+        result.push(`☀️ ${parts[1]} Afternoon`);
+
+    if (parseInt(parts[2]) > 0)
+        result.push(`🌙 ${parts[2]} Night`);
+
+    return result.join(" • ");
+}
     function renderPrescription(analysisText) {
         const lines = (analysisText || '').split('\n');
         let medicines = [];
@@ -699,37 +724,8 @@ ${med.purpose}
 </p>` : ''}
 
 <div class="grid grid-cols-3 gap-sm mt-sm">
-
-<div class="bg-surface-container rounded-lg p-sm text-center">
-<p class="text-caption">DOSE</p>
-<p class="font-semibold">${med.dose || '—'}</p>
-</div>
-
-<div class="bg-surface-container rounded-lg p-sm text-center">
-    <p class="text-caption">TIMING</p>
-
-    <p class="font-semibold">
-
-    ${
-        med.timing === "1-1-1"
-        ? "🌅 Morning • ☀️ Afternoon • 🌙 Night"
-
-        : med.timing === "1-0-1"
-        ? "🌅 Morning • 🌙 Night"
-
-        : med.timing === "0-0-1"
-        ? "🌙 Night"
-
-        : med.timing === "1-0-0"
-        ? "🌅 Morning"
-
-        : med.timing === "SOS"
-        ? "🚨 As Needed"
-
-        : (med.timing || "—")
-    }
-    </p>
-</div>
+<div class="bg-surface-container rounded-lg p-sm text-center"> <p class="text-caption">DOSE</p> <p class="font-semibold">${med.dose || '—'}</p> </div> <div class="bg-surface-container rounded-lg p-sm text-center"> <p class="text-caption">TIMING</p> <p class="font-semibold">
+${formatTiming(med.timing)}
 </p></div>
 <div class="bg-surface-container rounded-lg p-sm text-center">
 <p class="text-caption">DURATION</p>
