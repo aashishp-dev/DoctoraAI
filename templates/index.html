@@ -787,7 +787,7 @@ font-size:20px;
         });
 
         const responseText = await response.text();
-const data = JSON.parse(responseText);
+let data;
 console.log("SERVER RESPONSE:");
 console.log(responseText);
 
@@ -1009,16 +1009,22 @@ background:#111827;
 <p>No major drug interactions detected.</p>
 </div>
 `;
+  const analysisText = data.analysis || "";
+
 let specialist = "General Physician";
 
-if(data.analysis.includes("Pantoprazole"))
+if (analysisText.includes("Pantoprazole")) {
     specialist = "Gastroenterologist";
+}
 
-if(data.analysis.includes("Levocetirizine"))
+if (analysisText.includes("Levocetirizine")) {
     specialist = "Allergist";
+}
 
-if(data.analysis.includes("Paracetamol"))
+if (analysisText.includes("Paracetamol")) {
     specialist = "General Physician";
+}
+
 document.getElementById("doctor-result").innerHTML = `
 <div style="
 padding:15px;
@@ -1027,7 +1033,42 @@ border:1px solid #444;
 border-radius:12px;
 background:#111827;
 ">
+<h3>👨‍⚕ Recommended Specialist</h3>
 
+<p>${specialist}</p>
+
+<button
+onclick="window.open(
+'https://www.google.com/maps/search/${specialist}+near+me',
+'_blank'
+)"
+style="
+padding:8px 16px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+"
+>
+Find Nearby Doctor
+</button>
+
+</div>
+`;
+document.getElementById("doctor-result").innerHTML = `
+<div style="
+padding:15px;
+margin-top:20px;
+border:1px solid #444;
+border-radius:12px;
+background:#111827;
+">
+<h3>⚠ Drug Interaction Check</h3>
+      <p>No major drug interactions detected.</p>
+    </div>
+  `;
+</script>
 <h3>👨‍⚕ Recommended Specialist</h3>
 
 <p>${specialist}</p>
@@ -1136,8 +1177,7 @@ margin-bottom:15px;
 width:${score}%;
 height:100%;
 background:#f59e0b;
-">
-</div>
+"></div>
 </div>
 
 <div style="
@@ -1157,19 +1197,7 @@ color:#d1d5db;
 Continue medication and monitor symptoms.
 </p>
 
-<button
-onclick="window.print()"
-style="
-padding:10px 20px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
-margin-top:15px;
-font-weight:bold;
-"
->
+<button onclick="window.print()" style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;margin-top:15px;font-weight:bold;">
 📄 Download Health Report
 </button>
 
@@ -1190,13 +1218,13 @@ function showPlanner(medicine,timing,dose){
 
 let plan = "";
 
-if(timing.includes("1-1-1")){
+if((timing || "").includes("1-1-1")){
     plan =
 `🌅 Morning: ${medicine} ${dose}
 🍽 Afternoon: ${medicine} ${dose}
 🌙 Night: ${medicine} ${dose}`;
 }
-else if(timing.includes("1-0-1")){
+else if((timing || "").includes("1-0-1")){
     plan =
 `🌅 Morning: ${medicine} ${dose}
 🌙 Night: ${medicine} ${dose}`;
