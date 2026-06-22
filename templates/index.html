@@ -825,7 +825,7 @@ background:#f59e0b;
 
 </div>
 <button
-onclick="window.print()"
+onclick="downloadReport()"
 class="mt-4 px-4 py-2 rounded-lg bg-green-500 text-black font-bold"
 >
 📄 Download Report
@@ -833,6 +833,63 @@ class="mt-4 px-4 py-2 rounded-lg bg-green-500 text-black font-bold"
 `;
 
 return html;
+}
+function downloadReport() {
+
+    const reportContent =
+        document.getElementById("prescription-result").innerHTML;
+
+    const printWindow = window.open("", "", "width=1000,height=800");
+
+    printWindow.document.write(`
+    <html>
+    <head>
+        <title>DoctoraAI Prescription Report</title>
+        <style>
+            body{
+                font-family: Arial;
+                padding:40px;
+                background:white;
+                color:black;
+            }
+
+            h1,h2,h3,h4,h5{
+                color:black;
+            }
+
+            .bg-surface-container-low,
+            .bg-surface-container{
+                border:1px solid #ddd;
+                padding:15px;
+                margin-bottom:15px;
+                border-radius:10px;
+            }
+
+            button{
+                display:none;
+            }
+
+            a{
+                color:#2563eb;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <h1>DoctoraAI Prescription Report</h1>
+
+        ${reportContent}
+
+    </body>
+    </html>
+    `);
+
+    printWindow.document.close();
+
+    setTimeout(() => {
+        printWindow.print();
+    }, 500);
 }
 </script>
 
