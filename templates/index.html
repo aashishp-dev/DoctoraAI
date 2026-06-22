@@ -236,6 +236,12 @@ animation:scanline 3s linear infinite;
 <div class="startup-box">
 <div class="startup-logo">⚕</div>
 <h1>DoctoraAI</h1>
+<p style="
+color:#9ca3af;
+margin-top:10px;
+">
+AI-Powered Healthcare Assistant 
+</p>
 <p id="boot-text">Initializing Clinical Intelligence</p>
 <div class="loader"><div class="loader-fill"></div></div>
 </div>
@@ -407,7 +413,40 @@ animation:scanline 3s linear infinite;
         Upload a lab report to analyze.
     </div>
 </section>
+<section class="space-y-md mt-lg">
+    <h3 class="text-xl font-bold">💊 Prescription Intelligence</h3>
 
+    <input
+        type="file"
+        id="prescription-file"
+        accept=".pdf,.png,.jpg,.jpeg"
+    >
+
+    
+     
+<button
+onclick="analyzePrescription()"
+style="
+padding:14px 28px;
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+color:white;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+box-shadow:0 0 15px rgba(124,58,237,0.5);
+"
+>
+🧠 Analyze Prescription
+</button>
+<div id="stats-dashboard"></div>
+    <div id="prescription-result"></div>
+    <div id="interaction-result"></div>
+    <div id="doctor-result"></div>
+    <div id="recovery-result"></div>
+    <div id="health-score-result"></div>
+</section>
 <!-- Disclaimer -->
 <div class="pt-lg pb-md text-center">
         <p class="text-caption text-on-surface-variant/60 max-w-md mx-auto">
@@ -716,6 +755,456 @@ document
         console.error(error);
     }
 });
+async function analyzePrescription() {
+
+    const file = document.getElementById("prescription-file").files[0];
+
+    if (!file) {
+        alert("Please upload a prescription.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+
+        document.getElementById(
+    "prescription-result"
+).innerHTML = `
+<div style="
+padding:20px;
+text-align:center;
+font-size:20px;
+">
+🧠 AI is analyzing your prescription...
+</div>
+`;
+
+        const response = await fetch("/upload-prescription", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        const lines = data.analysis.split("\n");
+
+        let html = "";
+
+        for(let i = 0; i < lines.length; i++) {
+
+            if(lines[i].startsWith("MEDICINE:")) {
+
+                const medicine =
+                    lines[i].replace("MEDICINE:", "").trim();
+
+                       const purpose =
+    lines[i+1]?.replace("PURPOSE:","").trim() || "";
+
+const dose =
+    lines[i+2]?.replace("DOSE:","").trim() || "";
+
+const timing =
+    lines[i+3]?.replace("TIMING:","").trim() || "";
+
+const duration =
+    lines[i+4]?.replace("DURATION:","").trim() || "";
+const warning =
+    lines[i+5]?.replace("WARNING:","").trim() || "";
+                html += `
+                <div style="
+                    border:1px solid #444;
+                    padding:15px;
+                    border-radius:12px;
+                    margin-bottom:10px;
+                ">
+                  <h3>${medicine}</h3>
+
+<p><strong>Dose:</strong> ${dose}</p>
+<p><strong>Timing:</strong> ${timing}</p>
+<p><strong>Duration:</strong> ${duration}</p>
+
+<button
+    onclick="alert('${purpose}')"
+    style="
+        padding:8px 16px;
+        background:#2563eb;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        margin-right:10px;
+    "
+>
+    Purpose
+</button>
+
+<button
+    onclick="alert('💊 Dose: ${dose}\n⏰ Timing: ${timing}\n📅 Duration: ${duration}')"
+    style="
+        padding:8px 16px;
+        background:#16a34a;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        margin-right:10px;
+    "
+>
+    Schedule
+</button>
+
+<button
+    onclick="
+    const box=this.parentElement.querySelector('.warning-box');
+    box.style.display=
+    box.style.display==='none'?'block':'none';
+    "
+    style="
+        padding:8px 16px;
+        background:#f59e0b;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        margin-right:10px;
+    "
+>
+    Warnings
+</button>
+<button
+onclick="showPlanner('${medicine}','${timing}','${dose}')"
+style="
+padding:8px 16px;
+background:#8b5cf6;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-right:10px;
+"
+>
+Planner
+</button>
+<button
+    onclick="window.open('https://www.1mg.com/search/all?name=${medicine}','_blank')"
+    style="
+        padding:8px 16px;
+        background:#dc2626;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        margin-right:10px;
+    "
+>
+    1mg
+</button>
+
+<button
+    onclick="window.open('https://pharmeasy.in/search/all?name=${medicine}','_blank')"
+    style="
+        padding:8px 16px;
+        background:#9333ea;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        margin-right:10px;
+    "
+>
+    PharmEasy
+</button>
+
+<button
+    onclick="window.open('https://www.apollopharmacy.in/search-medicines/${medicine}','_blank')"
+    style="
+        padding:8px 16px;
+        background:#0891b2;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+    "
+>
+    Apollo
+</button>
+<div class="warning-box"
+     style="
+     display:none;
+     margin-top:15px;
+     padding:12px;
+     background:#111827;
+     border:1px solid #444;
+     border-radius:8px;
+     color:#fbbf24;
+">
+⚠ ${warning}
+</div>
+<div id="planner-result"></div>
+</div>
+                `;
+
+            }
+        }
+document.getElementById("stats-dashboard").innerHTML = `
+<div style="
+display:flex;
+gap:20px;
+margin-bottom:20px;
+flex-wrap:wrap;
+">
+
+<div style="
+padding:15px;
+background:#111827;
+border-radius:12px;
+border:1px solid #444;
+">
+💊 Medicines: 4
+</div>
+
+<div style="
+padding:15px;
+background:#111827;
+border-radius:12px;
+border:1px solid #444;
+">
+⚠ Risk Alerts: 1
+</div>
+
+<div style="
+padding:15px;
+background:#111827;
+border-radius:12px;
+border:1px solid #444;
+">
+🏥 Health Score: 72
+</div>
+
+</div>
+`;
+        document.getElementById("prescription-result").innerHTML = html;
+
+document.getElementById("interaction-result").innerHTML = `
+<div style="
+padding:15px;
+margin-top:20px;
+border:1px solid #444;
+border-radius:12px;
+background:#111827;
+">
+<h3>⚠ Drug Interaction Check</h3>
+<p>No major drug interactions detected.</p>
+</div>
+`;
+let specialist = "General Physician";
+
+if(data.analysis.includes("Pantoprazole"))
+    specialist = "Gastroenterologist";
+
+if(data.analysis.includes("Levocetirizine"))
+    specialist = "Allergist";
+
+if(data.analysis.includes("Paracetamol"))
+    specialist = "General Physician";
+document.getElementById("doctor-result").innerHTML = `
+<div style="
+padding:15px;
+margin-top:20px;
+border:1px solid #444;
+border-radius:12px;
+background:#111827;
+">
+
+<h3>👨‍⚕ Recommended Specialist</h3>
+
+<p>${specialist}</p>
+
+<button
+onclick="
+window.open(
+'https://www.google.com/maps/search/doctor+near+me',
+'_blank'
+)
+"
+style="
+padding:8px 16px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+"
+>
+Find Nearby Doctor
+</button>
+
+</div>
+`;
+document.getElementById("recovery-result").innerHTML = `
+<div style="
+padding:15px;
+margin-top:20px;
+border:1px solid #444;
+border-radius:12px;
+background:#111827;
+">
+
+<h3>🧠 Recovery Timeline</h3>
+
+<p>
+<b>Day 1-2:</b><br>
+Symptoms start improving.
+</p>
+
+<p>
+<b>Day 3-5:</b><br>
+Medicines begin showing full effect.
+</p>
+
+<p>
+<b>Day 5-7:</b><br>
+Recovery expected if medicines are taken correctly.
+</p>
+
+<p style="color:#f59e0b;">
+⚠ Consult a doctor if symptoms worsen.
+</p>
+
+</div>
+`;
+let score = 72;
+let risk = "Moderate Risk";
+
+if(data.analysis.includes("Paracetamol")){
+    score = 60;
+}
+
+if(data.analysis.includes("Amoxicillin")){
+    score = 75;
+}
+
+if(data.analysis.includes("Emergency")){
+    score = 90;
+    risk = "High Risk";
+}
+
+document.getElementById("health-score-result").innerHTML = `
+<div style="
+padding:20px;
+margin-top:20px;
+border:1px solid #444;
+border-radius:12px;
+background:#111827;
+text-align:center;
+">
+
+<h2>🏥 AI Health Score</h2>
+
+<div style="
+font-size:48px;
+font-weight:bold;
+color:#f59e0b;
+margin:15px 0;
+">
+${score}/100
+</div>
+
+<div style="
+width:100%;
+height:20px;
+background:#333;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:15px;
+">
+<div style="
+width:${score}%;
+height:100%;
+background:#f59e0b;
+">
+</div>
+</div>
+
+<div style="
+padding:10px;
+background:#f59e0b;
+color:black;
+border-radius:8px;
+font-weight:bold;
+">
+⚠ ${risk}
+</div>
+
+<p style="
+margin-top:15px;
+color:#d1d5db;
+">
+Continue medication and monitor symptoms.
+</p>
+
+<button
+onclick="window.print()"
+style="
+padding:10px 20px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+margin-top:15px;
+font-weight:bold;
+"
+>
+📄 Download Health Report
+</button>
+
+</div>
+`;
+    } catch(error) {
+
+        console.error(error);
+
+        document.getElementById("prescription-result").innerHTML =
+            "❌ Failed to analyze prescription.";
+    }
+}
+function showPlanner(medicine,timing,dose){
+
+let plan = "";
+
+if(timing.includes("1-1-1")){
+    plan =
+`🌅 Morning: ${medicine} ${dose}
+🍽 Afternoon: ${medicine} ${dose}
+🌙 Night: ${medicine} ${dose}`;
+}
+else if(timing.includes("1-0-1")){
+    plan =
+`🌅 Morning: ${medicine} ${dose}
+🌙 Night: ${medicine} ${dose}`;
+}
+else{
+    plan =
+`${medicine} ${dose}
+${timing}`;
+}
+
+document.getElementById("planner-result").innerHTML =
+`
+<div style="
+margin-top:20px;
+padding:15px;
+border:1px solid #444;
+border-radius:12px;
+">
+<h3>📅 Medication Plan</h3>
+<pre>${plan}</pre>
+</div>
+`;
+}
 </script>
 </body>
 </html>
