@@ -1,5 +1,7 @@
-Flask==3.1.1
-Pillow==11.3.0
-pytesseract==0.3.13
-PyMuPDF==1.26.1
+flask
 groq
+python-dotenv
+gunicorn
+PyMuPDF
+Pillow
+pytesseract
