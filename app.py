@@ -38,7 +38,10 @@ def analyze():
 
 import fitz
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract"
+import os
+
+if os.path.exists("/opt/homebrew/bin/tesseract"):
+    pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract"
 from PIL import Image
 
 @app.route("/upload-lab", methods=["POST"])
