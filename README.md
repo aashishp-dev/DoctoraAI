@@ -7,7 +7,7 @@ DoctoraAI is an intelligent healthcare platform that leverages multiple speciali
 Built for the **INDIA.RUNS Redrob x H2S Hackathon**.
 
 <p align="center">
-  <a href="https://doctora-ai.vercel.app/"><strong> Link🔗</strong></a>•
+  <a href="https://doctora-ai-kappa.vercel.app/"><strong> Link🔗</strong></a>•
   <a href="#how-it-works"><strong>How It Works</strong></a> •
   <a href="#tech-stack"><strong>Tech Stack</strong></a> •
   <a href="#-getting-started"><strong>Getting Started</strong></a>
