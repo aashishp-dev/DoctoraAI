@@ -787,7 +787,7 @@ font-size:20px;
         });
 
         const responseText = await response.text();
-
+const data = JSON.parse(responseText);
 console.log("SERVER RESPONSE:");
 console.log(responseText);
 

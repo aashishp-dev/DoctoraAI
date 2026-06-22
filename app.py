@@ -103,39 +103,53 @@ Keep it short and clear.
 @app.route("/upload-prescription", methods=["POST"])
 def upload_prescription():
 
-    print("🚀 Prescription route started")
+    try:
 
-    if "file" not in request.files:
-        return jsonify({"error": "No file uploaded"}), 400
+        print("🚀 Prescription route started")
 
-    file = request.files["file"]
+        if "file" not in request.files:
+            return jsonify({"error": "No file uploaded"}), 400
 
-    print("📄 File received:", file.filename)
+        file = request.files["file"]
 
-    text = ""
-    if file.filename.endswith(".pdf"):
-
-        pdf = fitz.open(
-            stream=file.read(),
-            filetype="pdf"
-        )
-
-        for page in pdf:
-            text += page.get_text()
-
-    elif file.filename.lower().endswith(
-        (".png", ".jpg", ".jpeg")
-    ):
+        print("📄 File:", file.filename)
 
         image = Image.open(file)
+
         text = pytesseract.image_to_string(image)
-        print("📋 OCR Text:")
+
+        print("📋 OCR TEXT:")
         print(text)
 
-    else:
+        analysis = ask_agent(
+"""
+You are a prescription analyzer.
+
+Extract all medicines.
+
+Return ONLY:
+
+MEDICINE:
+PURPOSE:
+DOSE:
+TIMING:
+DURATION:
+WARNING:
+""",
+            text
+        )
+
         return jsonify({
-            "error": "Unsupported file type"
-        }), 400
+            "analysis": analysis
+        })
+
+    except Exception as e:
+
+        print("❌ ERROR:", str(e))
+
+        return jsonify({
+            "error": str(e)
+        }), 500
 
     try:
         print("🤖 Calling Groq...")
