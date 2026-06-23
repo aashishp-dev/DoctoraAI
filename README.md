@@ -257,4 +257,10 @@ Built with AI, Healthcare, Accessibility, and Human-Centered Design in mind.
 
 ## 📄 License
 
-Built for hackathon submission and educational purposes.
+## License
+
+Copyright © 2026 Event Horizon.
+
+All Rights Reserved.
+
+This project is proprietary. No permission is granted to use, copy, modify, or distribute any part of this software without written authorization from the authors.
