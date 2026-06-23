@@ -247,7 +247,7 @@ Always seek professional medical advice for healthcare decisions.
 
 ---
 
-## 👨‍💻 Team Event Horizon
+## 👨‍💻 Team Void main.
 
 GL Bajaj Institute of Technology and Management
 
@@ -259,7 +259,7 @@ Built with AI, Healthcare, Accessibility, and Human-Centered Design in mind.
 
 ## License
 
-Copyright © 2026 Event Horizon.
+Copyright © 2026 Void main.
 
 All Rights Reserved.
 
