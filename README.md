@@ -8,7 +8,7 @@ DoctorAI is an advanced healthcare intelligence platform that combines Multi-Age
 
 ## 🚀 Live Demo
 
-https://doctora-ai-kappa.vercel.app/
+https://doctor-ai-voidmain.vercel.app/
 
 ---
 
