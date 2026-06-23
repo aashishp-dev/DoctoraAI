@@ -249,8 +249,6 @@ Always seek professional medical advice for healthcare decisions.
 
 ## 👨‍💻 Team Void main.
 
-GL Bajaj Institute of Technology and Management
-
 Built with AI, Healthcare, Accessibility, and Human-Centered Design in mind.
 
 ---
