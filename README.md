@@ -8,7 +8,7 @@ DoctoraAI is an advanced healthcare intelligence platform that combines Multi-Ag
 
 ## 🚀 Live Demo
 
-https://doctor-ai-voidmain.vercel.app/
+https://doctora-ai-voidmain.vercel.app/
 
 ---
 
