@@ -1,8 +1,8 @@
-# 🏥 DoctorAI
+# 🏥 DoctoraAI
 
 ### AI-Powered Multi-Agent Healthcare Assistant
 
-DoctorAI is an advanced healthcare intelligence platform that combines Multi-Agent AI, OCR-powered document understanding, and medical decision support to help users better understand symptoms, lab reports, and prescriptions.
+DoctoraAI is an advanced healthcare intelligence platform that combines Multi-Agent AI, OCR-powered document understanding, and medical decision support to help users better understand symptoms, lab reports, and prescriptions.
 
 ---
 
@@ -16,7 +16,7 @@ https://doctor-ai-voidmain.vercel.app/
 
 Millions of people rely on generic AI chatbots for medical guidance. Traditional systems provide a single response with limited validation and little understanding of medical documents.
 
-DoctorAI introduces a Multi-Agent Healthcare Intelligence System where specialized AI agents collaborate to analyze symptoms, interpret medical reports, decode prescriptions, and provide structured healthcare insights.
+DoctoraAI introduces a Multi-Agent Healthcare Intelligence System where specialized AI agents collaborate to analyze symptoms, interpret medical reports, decode prescriptions, and provide structured healthcare insights.
 
 ---
 
